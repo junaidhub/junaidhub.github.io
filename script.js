@@ -1,34 +1,39 @@
-async function loadTextFiles(folder, containerId) {
+async function loadTextByPrefix(prefix, containerId) {
   try {
-    const res = await fetch(folder);
+    const res = await fetch(".");
     const html = await res.text();
     const doc = new DOMParser().parseFromString(html, 'text/html');
-    const files = [...doc.querySelectorAll('a')]
-      .filter(a => a.href.endsWith('.txt'))
-      .map(a => a.getAttribute('href'));
+
+    const links = [...doc.querySelectorAll('a')]
+      .filter(a => a.href.endsWith('.txt') && a.textContent.startsWith(prefix));
 
     const container = document.getElementById(containerId);
     container.innerHTML = '';
 
-    for (const file of files) {
-      const content = await fetch(file).then(r => r.text());
-      const name = decodeURIComponent(file.split('/').pop().replace('.txt', ''));
+    for (const link of links) {
+      const name = link.textContent
+        .replace(prefix, '')
+        .replace('.txt', '')
+        .replace(/-/g, ' ');
+
+      const content = await fetch(link.getAttribute('href')).then(r => r.text());
+
       container.innerHTML += `
         <div class="card">
-          <h3>${name.replace(/-/g, ' ')}</h3>
+          <h3>${name}</h3>
           <pre>${content}</pre>
         </div>
       `;
     }
 
-    if (files.length === 0) {
-      container.innerHTML = `<p>No content found in <code>${folder}</code>. Add some .txt files!</p>`;
+    if (links.length === 0) {
+      container.innerHTML = "<p>No content found yet.</p>";
     }
   } catch (error) {
     document.getElementById(containerId).innerHTML = "<p>Error loading content.</p>";
   }
 }
 
-loadTextFiles('projects/', 'projects');
-loadTextFiles('command-guide/', 'commands');
-loadTextFiles('articles/', 'articles');
+loadTextByPrefix('project-', 'projects');
+loadTextByPrefix('command-', 'commands');
+loadTextByPrefix('article-', 'articles');

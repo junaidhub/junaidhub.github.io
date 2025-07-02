@@ -1,0 +1,3 @@
+GPIO Controller with ESP8266 and web interface.
+- Toggle pins
+- Monitor input status
