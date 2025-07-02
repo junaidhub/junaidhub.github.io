@@ -3,49 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projects | Junaid's Dev Hub</title>
+  <title>Junaid's Dev Hub</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <h1>🛠 Projects</h1>
-      <p class="about-short">Explore the real-world applications and hardware-software integration projects I’ve worked on.</p>
-    </div>
-  </header>
 
-  <main class="main-content container">
-    <div id="projects" class="cards-grid loader">Loading projects...</div>
-  </main>
+<header>
+  <h1>Junaid's Developer Hub</h1>
+  <p>🚀 Showcasing my projects, Linux command guides, and articles — straight from .txt files.</p>
+</header>
 
-  <footer>
-    <div class="container">&copy; 2025 Junaid • GitHub Pages</div>
-  </footer>
+<section>
+  <h2>🛠 Projects</h2>
+  <div id="projects" class="loader">Loading...</div>
+</section>
 
-  <script>
-    const loadProjectCards = async () => {
-      const folder = 'projects';
-      const res = await fetch(`${folder}/`);
-      const text = await res.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(text, "text/html");
-      const links = [...doc.querySelectorAll('a')].map(a => a.getAttribute('href')).filter(f => f.endsWith('.txt'));
-      const container = document.getElementById('projects');
-      container.innerHTML = '';
-      for (const file of links) {
-        const url = `${folder}/${file}`;
-        const name = file.replace('.txt', '').replace(/-/g, ' ');
-        const content = await fetch(url).then(r => r.text());
-        container.innerHTML += `
-          <div class="card">
-            <h3>${name}</h3>
-            <pre>${content.slice(0, 200)}...</pre>
-            <a href="${url}" class="read-more" target="_blank">Read Full</a>
-          </div>
-        `;
-      }
-    };
-    loadProjectCards();
-  </script>
+<section>
+  <h2>📖 Command Guide</h2>
+  <div id="commands" class="loader">Loading...</div>
+</section>
+
+<section>
+  <h2>📰 Articles</h2>
+  <div id="articles" class="loader">Loading...</div>
+</section>
+
+<footer>
+  &copy; 2025 Junaid • GitHub Pages
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
