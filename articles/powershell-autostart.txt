@@ -1,3 +1,0 @@
-Auto-run PowerShell Script at Boot Without Sign-in (Windows 10/11)
-
-Use Task Scheduler with highest privileges and no user login required.
