@@ -1,42 +1,86 @@
+/* style.css */
+
 body {
   font-family: 'Inter', sans-serif;
-  background: #f5f7fa;
   margin: 0;
-  padding: 0;
+  background: #f9fafc;
   color: #222;
 }
-header {
+
+.header {
   background: #0d6efd;
   color: white;
-  padding: 1.5rem;
+  padding: 2rem;
   text-align: center;
 }
-section {
-  padding: 1.5rem 2rem;
-}
-h2 {
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 0.5rem;
-  color: #0d6efd;
-}
-.card {
-  background: white;
-  margin: 1rem 0;
+
+.container {
+  max-width: 960px;
+  margin: auto;
   padding: 1rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
+
+.subtitle {
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.about-short {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #eef2f8;
+}
+
+#search-section {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+#search-box {
+  width: 90%;
+  max-width: 500px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  outline: none;
+}
+
+.main-content {
+  padding: 2rem 1rem;
+}
+
+h2 {
+  color: #0d6efd;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.25rem;
+}
+
+.card {
+  background: #fff;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
 pre {
   background: #f1f1f1;
   padding: 1rem;
   overflow-x: auto;
 }
-.error {
-  color: red;
+
+.card.highlight {
+  border: 2px solid #0d6efd;
+  background: #e9f1ff;
 }
+
 footer {
   text-align: center;
   padding: 1rem;
+  background: #f1f1f1;
   font-size: 0.9rem;
-  color: #666;
+  color: #555;
+  margin-top: 2rem;
 }

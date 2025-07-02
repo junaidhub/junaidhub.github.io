@@ -9,28 +9,45 @@
 </head>
 <body>
 
-<header>
-  <h1>Junaid's Developer Hub</h1>
-  <p>🚀 Showcasing my projects, Linux command guides, and articles — straight from .txt files.</p>
+<header class="header">
+  <div class="container">
+    <h1>Junaid's Developer Hub</h1>
+    <p class="subtitle">Embedded Systems | Raspberry Pi | Linux Automation | DIY Projects</p>
+    <p class="about-short">
+      Passionate about building smart solutions using Python, embedded hardware, and open-source tools. I love showcasing real-world projects and documenting my journey.
+    </p>
+    <section id="search-section">
+      <input type="text" id="search-box" placeholder="🔍 Search projects, guides, or articles..." />
+    </section>
+  </div>
 </header>
 
-<section>
-  <h2>🛠 Projects</h2>
-  <div id="projects" class="loader">Loading...</div>
-</section>
+<main class="main-content container">
+  <section>
+    <h2>👨‍💻 About Me</h2>
+    <div id="about" class="loader">Loading...</div>
+  </section>
 
-<section>
-  <h2>📖 Command Guide</h2>
-  <div id="commands" class="loader">Loading...</div>
-</section>
+  <section>
+    <h2>🛠 Projects</h2>
+    <div id="projects" class="loader">Loading...</div>
+  </section>
 
-<section>
-  <h2>📰 Articles</h2>
-  <div id="articles" class="loader">Loading...</div>
-</section>
+  <section>
+    <h2>📖 Command Guide</h2>
+    <div id="commands" class="loader">Loading...</div>
+  </section>
+
+  <section>
+    <h2>📰 Articles</h2>
+    <div id="articles" class="loader">Loading...</div>
+  </section>
+</main>
 
 <footer>
-  &copy; 2025 Junaid • GitHub Pages
+  <div class="container">
+    &copy; 2025 Junaid • Built with ❤️ using GitHub Pages
+  </div>
 </footer>
 
 <script src="script.js"></script>
