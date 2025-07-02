@@ -6,7 +6,7 @@ const folders = {
 
 // List of files manually added (GitHub Pages can't auto-detect)
 const files = {
-  projects: ['gpio.txt', 'rvm.txt'],
+  projects: ['gpio.txt', 'rvm.txt',"info.txt"],
   commands: ['networking.txt', 'wifi-tools.txt'],
   articles: ['esp8266.txt', 'powershell.txt']
 };
