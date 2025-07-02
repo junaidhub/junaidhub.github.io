@@ -8,14 +8,14 @@ body {
 }
 
 .header {
-  background: #0d6efd;
+  background: linear-gradient(135deg, #0d6efd, #6610f2);
   color: white;
   padding: 2rem;
   text-align: center;
 }
 
 .container {
-  max-width: 960px;
+  max-width: 1100px;
   margin: auto;
   padding: 1rem;
 }
@@ -30,6 +30,8 @@ body {
   font-size: 1rem;
   font-weight: 300;
   color: #eef2f8;
+  max-width: 700px;
+  margin: auto;
 }
 
 #search-section {
@@ -55,25 +57,72 @@ h2 {
   color: #0d6efd;
   border-bottom: 2px solid #ddd;
   padding-bottom: 0.25rem;
+  margin-top: 2rem;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
 }
 
 .card {
   background: #fff;
   padding: 1rem;
-  margin: 1rem 0;
   border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-pre {
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.card pre {
   background: #f1f1f1;
   padding: 1rem;
   overflow-x: auto;
+  font-size: 0.9rem;
+  max-height: 200px;
+  white-space: pre-wrap;
 }
 
 .card.highlight {
   border: 2px solid #0d6efd;
   background: #e9f1ff;
+}
+
+.card.hidden {
+  display: none;
+}
+
+.read-more {
+  margin-top: auto;
+  align-self: flex-start;
+  background: #0d6efd;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.read-more:hover {
+  background: #084298;
 }
 
 footer {
@@ -83,4 +132,17 @@ footer {
   font-size: 0.9rem;
   color: #555;
   margin-top: 2rem;
+}
+
+/* Responsive section titles */
+@media (max-width: 600px) {
+  .header h1 {
+    font-size: 1.8rem;
+  }
+  .about-short {
+    font-size: 0.9rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
 }
