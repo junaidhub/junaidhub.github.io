@@ -1,86 +1,36 @@
-// async function loadTextByPrefix(prefix, containerId) {
-//   try {
-//     const res = await fetch(".");
-//     const html = await res.text();
-//     const doc = new DOMParser().parseFromString(html, 'text/html');
+const folders = {
+  projects: "projects",
+  commands: "command-guide",
+  articles: "articles"
+};
 
-//     const links = [...doc.querySelectorAll('a')]
-//       .filter(a => a.href.endsWith('.txt') && a.textContent.startsWith(prefix));
+// List of files manually added (GitHub Pages can't auto-detect)
+const files = {
+  projects: ['gpio.txt', 'rvm.txt'],
+  commands: ['networking.txt', 'wifi-tools.txt'],
+  articles: ['esp8266.txt', 'powershell.txt']
+};
 
-//     const container = document.getElementById(containerId);
-//     container.innerHTML = '';
-
-//     for (const link of links) {
-//       const name = link.textContent
-//         .replace(prefix, '')
-//         .replace('.txt', '')
-//         .replace(/-/g, ' ');
-
-//       const content = await fetch(link.getAttribute('href')).then(r => r.text());
-
-//       container.innerHTML += `
-//         <div class="card">
-//           <h3>${name}</h3>
-//           <pre>${content}</pre>
-//         </div>
-//       `;
-//     }
-
-//     if (links.length === 0) {
-//       container.innerHTML = "<p>No content found yet.</p>";
-//     }
-//   } catch (error) {
-//     document.getElementById(containerId).innerHTML = "<p>Error loading content.</p>";
-//   }
-// }
-
-// loadTextByPrefix('project-', 'projects');
-// loadTextByPrefix('command-', 'commands');
-// loadTextByPrefix('article-', 'articles');
-
-
-async function loadTextByPrefix(prefix, containerId) {
-  try {
-    console.log(`🔍 scanning for prefix: ${prefix}`);
-    const res = await fetch('.');
-    const html = await res.text();
-    const doc = new DOMParser().parseFromString(html, 'text/html');
-
-    const anchorEls = [...doc.querySelectorAll('a')];
-    console.log(`Found anchors:`, anchorEls.map(a => a.textContent));
-
-    const links = anchorEls.filter(a =>
-      a.textContent.endsWith('.txt') && a.textContent.startsWith(prefix)
-    );
-    console.log(`Filtered (${prefix}) anchors:`, links.map(a => a.textContent));
-
-    const container = document.getElementById(containerId);
-    container.innerHTML = '';
-
-    for (const link of links) {
-      const name = link.textContent
-        .replace(prefix, '')
-        .replace('.txt', '')
-        .replace(/-/g, ' ');
-
-      const content = await fetch(link.getAttribute('href')).then(r => r.text());
-      container.innerHTML += `
-        <div class="card">
-          <h3>${name}</h3>
-          <pre>${content}</pre>
-        </div>
-      `;
-    }
-
-    if (links.length === 0) {
-      container.innerHTML = "<p>No content found yet.</p>";
-    }
-  } catch (error) {
-    console.error(error);
-    document.getElementById(containerId).innerHTML = "<p>Error loading content.</p>";
+for (const section in files) {
+  for (const filename of files[section]) {
+    const path = `${folders[section]}/${filename}`;
+    loadFile(path, section);
   }
 }
 
-loadTextByPrefix('project-', 'projects');
-loadTextByPrefix('command-', 'commands');
-loadTextByPrefix('article-', 'articles');
+async function loadFile(filePath, sectionId) {
+  const container = document.getElementById(sectionId);
+  const title = filePath.split('/').pop().replace('.txt', '').replace(/-/g, ' ');
+
+  try {
+    const content = await fetch(filePath).then(r => r.text());
+    container.innerHTML += `
+      <div class="card">
+        <h3>${title}</h3>
+        <pre>${content}</pre>
+      </div>
+    `;
+  } catch {
+    container.innerHTML += `<p class="error">⚠️ Failed to load ${filePath}</p>`;
+  }
+}

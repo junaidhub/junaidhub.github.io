@@ -1,86 +1,42 @@
 body {
   font-family: 'Inter', sans-serif;
+  background: #f5f7fa;
   margin: 0;
   padding: 0;
-  background: #f5f7fa;
-  color: #333;
+  color: #222;
 }
-
 header {
-  background: linear-gradient(to right, #007BFF, #00c6ff);
+  background: #0d6efd;
   color: white;
+  padding: 1.5rem;
   text-align: center;
-  padding: 40px 20px;
 }
-
-header h1 {
-  margin: 0;
-  font-size: 2.5rem;
-}
-
-header p {
-  font-size: 1.1rem;
-  margin-top: 10px;
-}
-
 section {
-  max-width: 1000px;
-  margin: 30px auto;
-  padding: 0 20px;
+  padding: 1.5rem 2rem;
 }
-
 h2 {
-  border-left: 5px solid #007BFF;
-  padding-left: 10px;
-  color: #007BFF;
-  font-size: 1.6rem;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 0.5rem;
+  color: #0d6efd;
 }
-
 .card {
   background: white;
-  border-radius: 10px;
-  padding: 20px;
-  margin: 15px 0;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s ease;
+  margin: 1rem 0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
 }
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card h3 {
-  margin-top: 0;
-  font-size: 1.3rem;
-  color: #333;
-}
-
-.card pre {
-  background: #f0f0f0;
-  padding: 15px;
-  border-radius: 6px;
-  white-space: pre-wrap;
+pre {
+  background: #f1f1f1;
+  padding: 1rem;
   overflow-x: auto;
-  font-family: 'Courier New', monospace;
 }
-
+.error {
+  color: red;
+}
 footer {
   text-align: center;
-  padding: 20px;
+  padding: 1rem;
   font-size: 0.9rem;
-  color: #555;
-  margin-top: 40px;
-}
-
-.loader {
-  text-align: center;
-  padding: 20px;
-  font-style: italic;
-  color: #777;
-}
-
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 2rem;
-  }
+  color: #666;
 }
