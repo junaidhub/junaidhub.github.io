@@ -1,38 +1,54 @@
-/* assets/style.css */
+/* Custom styles for JunaidHub dashboard */
 
+/* Improve readability on mobile */
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
 }
 
-.card {
-  transition: transform 0.2s ease-in-out;
-}
-
-.card:hover {
-  transform: scale(1.02);
-  transition: transform 0.2s;
-}
-
+/* Responsive images */
 .img-preview {
+  max-width: 100%;
+  height: auto;
   object-fit: contain;
-  max-height: 100px;
   border-radius: 8px;
 }
 
-
-a.link {
-  color: #3b82f6;
-  text-decoration: underline;
+/* Modal enhancements */
+#previewModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-a.link:hover {
-  opacity: 0.8;
-}
-table {
-  border-collapse: collapse;
+/* Code blocks */
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
-th {
-  background-color: #f3f4f6;
-  font-weight: 600;
+/* Folder sections */
+.folder-content {
+  transition: max-height 0.3s ease;
+}
+
+/* Scrollbar for overflow areas */
+.overflow-auto::-webkit-scrollbar {
+  width: 6px;
+}
+.overflow-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+/* Hover for cards */
+.card:hover {
+  background-color: #f9fafb;
+  transition: background-color 0.3s ease;
+}
+
+/* Search box focus */
+#searchInput:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 1px #2563eb;
 }
