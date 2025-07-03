@@ -1,6 +1,42 @@
-/* Custom styles for JunaidHub dashboard */
+/* assets/style.css */
 
-/* Improve readability on mobile */
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+  transition: transform 0.2s;
+}
+
+.img-preview {
+  object-fit: contain;
+  max-height: 100px;
+  border-radius: 8px;
+}
+
+
+a.link {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+a.link:hover {
+  opacity: 0.8;
+}
+table {
+  border-collapse: collapse;
+}
+
+th {
+  background-color: #f3f4f6;
+  font-weight: 600;
+}
+
 body {
   font-family: system-ui, sans-serif;
   line-height: 1.5;
@@ -52,3 +88,4 @@ pre {
   border-color: #2563eb;
   box-shadow: 0 0 0 1px #2563eb;
 }
+
