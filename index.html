@@ -3,36 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Junaid's Dev Hub</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>Dashboard - JunaidHub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    setInterval(() => location.reload(), 60000); // Auto-refresh every 60s
+  </script>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans p-6">
 
-<header>
-  <h1>Junaid's Developer Hub</h1>
-  <p>🚀 Showcasing my projects, Linux command guides, and articles — straight from .txt files.</p>
-</header>
+  <header class="mb-6 flex justify-between items-center">
+    <h1 class="text-3xl font-bold">📂 JunaidHub File Dashboard</h1>
+    <a href="about.html" class="text-blue-600 hover:underline">About Me</a>
+  </header>
 
-<section>
-  <h2>🛠 Projects</h2>
-  <div id="projects" class="loader">Loading...</div>
-</section>
+  <div id="dashboard" class="space-y-6">
+    <p>Loading files...</p>
+  </div>
 
-<section>
-  <h2>📖 Command Guide</h2>
-  <div id="commands" class="loader">Loading...</div>
-</section>
-
-<section>
-  <h2>📰 Articles</h2>
-  <div id="articles" class="loader">Loading...</div>
-</section>
-
-<footer>
-  &copy; 2025 Junaid • GitHub Pages
-</footer>
-
-<script src="script.js"></script>
+  <script>
+    fetch('files.json')
+      .then(res => res.json())
+      .then(data => {
+        const dashboard = document.getElementById('dashboard');
+        dashboard.innerHTML = '';
+        data.forEach(folder => {
+          const section = document.createElement('div');
+          section.innerHTML = `
+            <h2 class="text-xl font-semibold mb-2">${folder.folder}</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              ${folder.files.map(file => `
+                <div class="p-4 bg-white shadow rounded-xl">
+                  <p class="font-medium">${file.name}</p>
+                  <p class="text-sm text-gray-500">${new Date(file.updated).toLocaleString()}</p>
+                  ${file.type === 'txt' || file.type === 'csv' ?
+                    `<a href="${file.url}" class="text-blue-500 underline text-sm mt-2 inline-block">View File</a>` :
+                    file.type.match(/(png|jpg|jpeg|gif)/) ?
+                    `<img src="${file.url}" alt="${file.name}" class="mt-2 max-h-32 rounded" />` :
+                    `<a href="${file.url}" download class="text-green-500 underline text-sm mt-2 inline-block">Download</a>`
+                  }
+                </div>
+              `).join('')}
+            </div>
+          `;
+          dashboard.appendChild(section);
+        });
+      });
+  </script>
 </body>
 </html>
