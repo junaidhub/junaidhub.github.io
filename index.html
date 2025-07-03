@@ -1,58 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>📁 JunaidHub File Dashboard</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="assets/style.css">
-  <script>
-    setInterval(() => location.reload(), 60000); // Auto-refresh every 60s
-  </script>
-</head>
-<body class="bg-gradient-to-br from-white via-blue-50 to-blue-100 text-gray-800 min-h-screen p-6">
+<script>
+  async function fetchText(url) {
+    try {
+      const res = await fetch(url);
+      return await res.text();
+    } catch (err) {
+      return "⚠️ Failed to load file.";
+    }
+  }
 
-  <header class="flex justify-between items-center mb-6">
-    <h1 class="text-4xl font-bold text-blue-800">📁 JunaidHub Dashboard</h1>
-    <a href="about.html" class="text-blue-700 hover:underline text-lg">About Me</a>
-  </header>
+  async function renderDashboard() {
+    const res = await fetch('files.json');
+    const data = await res.json();
+    const dashboard = document.getElementById('dashboard');
+    dashboard.innerHTML = '';
 
-  <div id="dashboard" class="space-y-10">
-    <p>Loading files...</p>
-  </div>
+    for (const folder of data) {
+      const section = document.createElement('section');
+      section.innerHTML = `<h2 class="text-2xl font-semibold text-blue-600">${folder.folder}</h2>`;
+      const grid = document.createElement('div');
+      grid.className = "grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4";
 
-  <footer class="mt-16 text-center text-sm text-gray-500">
-    Auto-refresh every 60s | Built with 💻 by Junaid
-  </footer>
+      for (const file of folder.files) {
+        const card = document.createElement('div');
+        card.className = "card bg-white p-4 shadow rounded-xl";
 
-  <script>
-    fetch('files.json')
-      .then(res => res.json())
-      .then(data => {
-        const dashboard = document.getElementById('dashboard');
-        dashboard.innerHTML = '';
-        data.forEach(folder => {
-          const section = document.createElement('section');
-          section.innerHTML = `
-            <h2 class="text-2xl font-semibold text-blue-600">${folder.folder}</h2>
-            <div class="grid md:grid-cols-3 gap-6 mt-4">
-              ${folder.files.map(file => `
-                <div class="card bg-white p-4 shadow rounded-xl">
-                  <p class="text-lg font-medium">${file.name}</p>
-                  <p class="text-sm text-gray-500">${new Date(file.updated).toLocaleString()}</p>
-                  ${file.type === 'txt' || file.type === 'csv' ? `
-                    <a href="${file.url}" class="link text-sm mt-2 inline-block">📄 View File</a>` :
-                    file.type.match(/(png|jpg|jpeg|gif)/) ? `
-                    <img src="${file.url}" class="img-preview" />` :
-                    `<a href="${file.url}" download class="link text-sm mt-2 inline-block">⬇️ Download</a>`
-                  }
-                </div>
-              `).join('')}
-            </div>
+        const title = `<p class="text-lg font-medium">${file.name}</p>`;
+        const time = `<p class="text-sm text-gray-500">${new Date(file.updated).toLocaleString()}</p>`;
+        
+        let preview = "";
+
+        if (file.type === 'txt' || file.type === 'csv') {
+          const content = await fetchText(file.url);
+          preview = `
+            <pre class="bg-gray-100 text-sm p-2 mt-2 rounded overflow-auto max-h-48">${content}</pre>
           `;
-          dashboard.appendChild(section);
-        });
-      });
-  </script>
-</body>
-</html>
+        } else if (file.type.match(/(png|jpg|jpeg|gif)/)) {
+          preview = `<img src="${file.url}" class="img-preview mt-2 rounded-lg max-h-32" />`;
+        } else {
+          preview = `<a href="${file.url}" download class="link text-sm mt-2 inline-block">⬇️ Download File</a>`;
+        }
+
+        card.innerHTML = title + time + preview;
+        grid.appendChild(card);
+      }
+
+      section.appendChild(grid);
+      dashboard.appendChild(section);
+    }
+  }
+
+  renderDashboard();
+  setInterval(() => location.reload(), 60000); // Auto-refresh every 60s
+</script>
