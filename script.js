@@ -30,19 +30,6 @@ function parseCSV(csvText) {
   return table;
 }
 
-function openModal(htmlContent) {
-  const modal = document.getElementById("previewModal");
-  const modalContent = document.getElementById("modalContent");
-  modalContent.innerHTML = htmlContent;
-  modal.classList.remove("hidden");
-}
-
-function closeModal() {
-  const modal = document.getElementById("previewModal");
-  modal.classList.add("hidden");
-  document.getElementById("modalContent").innerHTML = "";
-}
-
 async function renderDashboard() {
   const res = await fetch('files.json');
   const data = await res.json();
@@ -82,25 +69,13 @@ async function renderDashboard() {
 
       if (file.type === 'txt') {
         const contentText = await fetchText(file.url);
-        const safeText = contentText.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        preview = `
-          <pre class="bg-white text-sm p-2 mt-2 rounded overflow-auto max-h-40 border cursor-pointer" 
-               onclick="openModal('<pre class=\'whitespace-pre-wrap\'>${safeText}</pre>')">
-            ${safeText}
-          </pre>`;
+        preview = `<pre class="bg-white text-sm p-2 mt-2 rounded overflow-auto max-h-40 border">${contentText}</pre>`;
       } else if (file.type === 'csv') {
         const contentText = await fetchText(file.url);
         const table = parseCSV(contentText);
-        preview = `
-          <div class="overflow-auto mt-2 max-h-48 border rounded cursor-pointer" 
-               onclick="openModal(\`${table.outerHTML}\`)">
-            ${table.outerHTML}
-          </div>`;
+        preview = `<div class="overflow-auto mt-2 max-h-48 border rounded">${table.outerHTML}</div>`;
       } else if (file.type.match(/(png|jpg|jpeg|gif)/)) {
-        preview = `
-          <img src="${file.url}" alt="${file.name}" 
-               class="img-preview mt-2 rounded-lg max-h-32 cursor-pointer" 
-               onclick="openModal('<img src=\'${file.url}\' class=\'rounded\' />')" />`;
+        preview = `<img src="${file.url}" alt="${file.name}" class="img-preview mt-2 rounded-lg max-h-32" />`;
       } else {
         preview = `<a href="${file.url}" download class="text-blue-600 text-sm underline mt-2 inline-block">⬇️ Download</a>`;
       }
@@ -141,8 +116,10 @@ function enableSearch() {
   });
 }
 
+// Initial run
 renderDashboard().then(enableSearch);
 
+// Soft auto-refresh every 60 seconds
 setInterval(() => {
   renderDashboard();
 }, 60000);
