@@ -3,6 +3,12 @@
     "folder": "Components list",
     "files": [
       {
+        "name": "Nivit Sheet.csv",
+        "type": "csv",
+        "url": "data/Components list/Nivit Sheet.csv",
+        "updated": "2025-07-04T01:29:37.023361"
+      },
+      {
         "name": "Idris Sheet.csv",
         "type": "csv",
         "url": "data/Components list/Idris Sheet.csv",
