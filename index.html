@@ -1,3 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>📁 JunaidHub File Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/style.css">
+  <script>
+    setInterval(() => location.reload(), 60000); // Auto-refresh every 60s
+  </script>
+</head>
+<body class="bg-gradient-to-br from-white via-blue-50 to-blue-100 text-gray-800 min-h-screen p-6">
+
+  <header class="flex justify-between items-center mb-6">
+    <h1 class="text-4xl font-bold text-blue-800">📁 JunaidHub Dashboard</h1>
+    <a href="about.html" class="text-blue-700 hover:underline text-lg">About Me</a>
+  </header>
+
+  <div id="dashboard" class="space-y-10">
+    <p>Loading files...</p>
+  </div>
+
+  <footer class="mt-16 text-center text-sm text-gray-500">
+    Auto-refresh every 60s | Built with 💻 by Junaid
+  </footer>
+
 <script>
   async function fetchText(url) {
     try {
@@ -52,3 +79,6 @@
   renderDashboard();
   setInterval(() => location.reload(), 60000); // Auto-refresh every 60s
 </script>
+
+</body>
+</html>
