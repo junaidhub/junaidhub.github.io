@@ -1,0 +1,28 @@
+/* assets/style.css */
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.card {
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+.img-preview {
+  max-height: 100px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+a.link {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+a.link:hover {
+  opacity: 0.8;
+}

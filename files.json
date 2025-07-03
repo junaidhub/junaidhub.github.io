@@ -1,0 +1,36 @@
+[
+  {
+    "folder": "project1",
+    "files": [
+      {
+        "name": "data.csv",
+        "type": "csv",
+        "url": "data/project1/data.csv",
+        "updated": "2025-07-03T22:52:58.964506"
+      },
+      {
+        "name": "readme.txt",
+        "type": "txt",
+        "url": "data/project1/readme.txt",
+        "updated": "2025-07-03T22:52:48.676434"
+      }
+    ]
+  },
+  {
+    "folder": "project2",
+    "files": [
+      {
+        "name": "sample.csv",
+        "type": "csv",
+        "url": "data/project2/sample.csv",
+        "updated": "2025-07-03T22:53:14.869481"
+      },
+      {
+        "name": "info.txt",
+        "type": "txt",
+        "url": "data/project2/info.txt",
+        "updated": "2025-07-03T22:53:07.921457"
+      }
+    ]
+  }
+]
