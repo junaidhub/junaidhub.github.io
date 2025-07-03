@@ -9,14 +9,16 @@ body {
 }
 
 .card:hover {
-  transform: translateY(-5px) scale(1.02);
+  transform: scale(1.02);
+  transition: transform 0.2s;
 }
 
 .img-preview {
+  object-fit: contain;
   max-height: 100px;
   border-radius: 8px;
-  margin-top: 10px;
 }
+
 
 a.link {
   color: #3b82f6;
