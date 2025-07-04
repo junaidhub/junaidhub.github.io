@@ -1,0 +1,26 @@
+# Raspberry Pi: SPI Interfacing Guide
+
+## 1. Enable SPI
+sudo raspi-config
+# Go to Interface Options > SPI > Enable
+
+## 2. Install spidev for Python
+sudo apt install python3-pip
+pip3 install spidev
+
+## 3. Python SPI Example
+import spidev
+import time
+
+spi = spidev.SpiDev()
+spi.open(0, 0)  # Bus 0, Device (CS) 0
+spi.max_speed_hz = 50000
+
+# Send data
+spi.xfer([0x01, 0x80, 0x00])  # Example write
+
+# Read response
+response = spi.readbytes(3)
+print("Response:", response)
+
+spi.close()

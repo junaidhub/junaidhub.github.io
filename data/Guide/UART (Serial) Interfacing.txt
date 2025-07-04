@@ -1,0 +1,20 @@
+# Raspberry Pi: UART (Serial) Interfacing
+
+## 1. Enable UART
+sudo raspi-config
+# Interface Options > Serial > Login shell: No, Enable hardware serial: Yes
+
+## 2. Check Serial Port
+ls /dev/serial0
+# Typically points to /dev/ttyAMA0 or /dev/ttyS0
+
+## 3. Install PySerial
+pip3 install pyserial
+
+## 4. Python UART Example
+import serial
+ser = serial.Serial('/dev/serial0', 9600, timeout=1)
+ser.write(b'Hello UART\\n')
+response = ser.readline().decode('utf-8')
+print("Received:", response)
+ser.close()

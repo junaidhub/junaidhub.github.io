@@ -1,0 +1,32 @@
+# Using rc.local to Run Scripts on Boot
+
+## 1. Edit rc.local
+sudo nano /etc/rc.local
+
+## 2. Add Script Call Before `exit 0`
+/home/pi/myscript.sh &
+exit 0
+
+## 3. Make Script Executable
+chmod +x /home/pi/myscript.sh
+
+## 4. Enable rc.local (if missing)
+sudo nano /etc/systemd/system/rc-local.service
+
+# Paste this content:
+[Unit]
+Description=/etc/rc.local Compatibility
+ConditionPathExists=/etc/rc.local
+
+[Service]
+Type=forking
+ExecStart=/etc/rc.local start
+TimeoutSec=0
+RemainAfterExit=yes
+GuessMainPID=no
+
+[Install]
+WantedBy=multi-user.target
+
+# Then enable it:
+sudo systemctl enable rc-local

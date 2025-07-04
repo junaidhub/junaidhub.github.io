@@ -1,0 +1,33 @@
+# Raspberry Pi: GPIO Input, Output, PWM with Pull-up/down
+
+## 1. Setup
+sudo apt install python3-rpi.gpio
+
+## 2. GPIO Basic Setup in Python
+import RPi.GPIO as GPIO
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+
+## 3. GPIO Output
+GPIO.setup(18, GPIO.OUT)
+GPIO.output(18, GPIO.HIGH)  # or GPIO.LOW
+
+## 4. GPIO Input with Pull-Up / Pull-Down
+GPIO.setup(23, GPIO.IN, pull_up_down=GPIO.PUD_UP)    # Internal pull-up
+GPIO.setup(24, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)  # Internal pull-down
+
+input_state = GPIO.input(23)
+print("Input High" if input_state else "Input Low")
+
+## 5. PWM Output
+GPIO.setup(18, GPIO.OUT)
+pwm = GPIO.PWM(18, 1000)  # Pin 18, 1kHz
+pwm.start(50)             # Start with 50% duty cycle
+
+# Change duty cycle
+pwm.ChangeDutyCycle(75)
+# Change frequency
+pwm.ChangeFrequency(500)
+# Stop PWM
+pwm.stop()
+GPIO.cleanup()

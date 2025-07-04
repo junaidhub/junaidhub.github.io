@@ -1,0 +1,21 @@
+# Raspberry Pi: Camera Control with Picamera2
+
+## 1. Install Picamera2
+sudo apt update
+sudo apt install python3-picamera2
+
+## 2. Take a Picture
+from picamera2 import Picamera2
+import time
+
+picam = Picamera2()
+picam.start()
+time.sleep(2)
+picam.capture_file("image.jpg")
+
+## 3. Record Video
+config = picam.create_video_configuration()
+picam.configure(config)
+picam.start_recording("video.h264")
+time.sleep(10)
+picam.stop_recording()

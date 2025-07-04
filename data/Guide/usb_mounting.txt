@@ -1,0 +1,17 @@
+# Raspberry Pi: Mounting USB Drives
+
+## 1. List USB devices
+lsblk
+sudo fdisk -l
+
+## 2. Create mount point and mount
+sudo mkdir /mnt/usb
+sudo mount /dev/sda1 /mnt/usb
+
+## 3. Auto-mount on boot
+sudo nano /etc/fstab
+
+# Add line:
+UUID=XXXX-XXXX /mnt/usb vfat defaults,nofail 0 0
+# Get UUID:
+sudo blkid

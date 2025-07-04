@@ -1,0 +1,29 @@
+# How to Use systemd to Run Scripts on Boot
+
+## 1. Create Your Script
+nano /home/pi/myscript.sh
+# Add your script content and save
+chmod +x /home/pi/myscript.sh
+
+## 2. Create a systemd Service File
+sudo nano /etc/systemd/system/myscript.service
+
+## 3. Example systemd Service
+[Unit]
+Description=My Startup Script
+After=network.target
+
+[Service]
+ExecStart=/home/pi/myscript.sh
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+
+## 4. Enable and Start
+sudo systemctl daemon-reexec
+sudo systemctl daemon-reload
+sudo systemctl enable myscript.service
+sudo systemctl start myscript.service
+sudo systemctl status myscript.service

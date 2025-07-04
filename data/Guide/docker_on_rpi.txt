@@ -1,0 +1,20 @@
+# Raspberry Pi: Install and Use Docker
+
+## 1. Install Docker
+curl -sSL https://get.docker.com | sh
+sudo usermod -aG docker pi
+newgrp docker
+
+## 2. Test Docker
+docker run hello-world
+
+## 3. Common Docker Commands
+docker ps                     # Running containers
+docker ps -a                  # All containers
+docker images                 # Show images
+docker pull image-name
+docker run -it image-name
+docker exec -it container bash
+docker stop container
+docker rm container
+docker rmi image

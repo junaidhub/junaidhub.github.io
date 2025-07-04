@@ -1,0 +1,24 @@
+# Raspberry Pi: Using cron Jobs
+
+## 1. Open crontab
+crontab -e
+
+## 2. Format
+# ┌───────────── min (0 - 59)
+# │ ┌───────────── hour (0 - 23)
+# │ │ ┌───────────── day of month (1 - 31)
+# │ │ │ ┌───────────── month (1 - 12)
+# │ │ │ │ ┌───────────── day of week (0 - 6) (Sunday=0)
+# │ │ │ │ │
+# * * * * * command_to_execute
+
+## 3. Examples
+@reboot /home/pi/startup.sh
+0 3 * * * /home/pi/backup.sh          # Run every day at 3AM
+*/5 * * * * python3 /home/pi/log.py   # Every 5 minutes
+
+## 4. View crontab jobs
+crontab -l
+
+## 5. Remove crontab
+crontab -r

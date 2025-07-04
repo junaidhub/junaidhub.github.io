@@ -1,0 +1,30 @@
+# Raspberry Pi: Using SPI ADC (MCP3008, MCP3201)
+
+## 1. Wiring (MCP3008)
+# VDD/VREF → 3.3V
+# GND → GND
+# CLK → GPIO11 (SCLK)
+# DOUT → GPIO9 (MISO)
+# DIN → GPIO10 (MOSI)
+# CS → GPIO8 (CE0)
+
+## 2. MCP3008 Python Example
+import spidev
+spi = spidev.SpiDev()
+spi.open(0, 0)
+spi.max_speed_hz = 1350000
+
+def read_adc(channel):
+    assert 0 <= channel <= 7
+    r = spi.xfer2([1, (8 + channel) << 4, 0])
+    value = ((r[1] & 3) << 8) + r[2]
+    return value
+
+print("CH0:", read_adc(0))
+spi.close()
+
+## 3. MCP3201 (12-bit ADC) Example
+def read_mcp3201():
+    raw = spi.xfer2([0x00, 0x00])
+    value = ((raw[0] & 0x1F) << 7) | (raw[1] >> 1)
+    return value

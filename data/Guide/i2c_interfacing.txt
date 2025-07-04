@@ -1,0 +1,22 @@
+# Raspberry Pi: I2C Interfacing Guide
+
+## 1. Enable I2C
+sudo raspi-config
+# Go to Interface Options > I2C > Enable
+
+## 2. Install I2C tools
+sudo apt install i2c-tools python3-smbus
+
+## 3. Check for Connected I2C Devices
+i2cdetect -y 1  # Scan bus 1
+
+## 4. Python Example (Read from I2C)
+import smbus
+bus = smbus.SMBus(1)        # 1 = /dev/i2c-1
+address = 0x48              # Replace with your device's address
+
+value = bus.read_byte(address)
+print("Value:", value)
+
+# Write byte
+bus.write_byte(address, 0x01)
