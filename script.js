@@ -30,6 +30,23 @@ function parseCSV(csvText) {
   return table;
 }
 
+function getFileIcon(type) {
+  const map = {
+    'txt': '📄',
+    'csv': '📊',
+    'pdf': '📕',
+    'png': '🖼️',
+    'jpg': '🖼️',
+    'jpeg': '🖼️',
+    'gif': '🖼️',
+    'zip': '🗜️',
+    'mp4': '🎞️',
+    'mp3': '🎵',
+    'folder': '📁'
+  };
+  return map[type.toLowerCase()] || '📦';
+}
+
 async function renderDashboard() {
   const res = await fetch('files.json');
   const data = await res.json();
@@ -50,20 +67,26 @@ async function renderDashboard() {
     const header = document.createElement('div');
     header.className = "flex justify-between items-center cursor-pointer";
     header.innerHTML = `
-      <h2 class="text-xl font-semibold text-blue-600">${folder.folder}</h2>
+      <h2 class="text-xl font-semibold text-blue-600">${getFileIcon('folder')} ${folder.folder}</h2>
       <span class="text-sm text-gray-500">${isOpen ? 'Click to collapse' : 'Click to expand'}</span>
     `;
 
     const content = document.createElement('div');
-    content.className = `grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4 folder-content ${isOpen ? '' : 'hidden'}`;
+    content.className = `grid grid-cols-1 gap-4 mt-4 folder-content ${isOpen ? '' : 'hidden'}`;
 
     for (const file of folder.files) {
       const card = document.createElement('div');
       card.className = "card bg-gray-50 p-4 rounded border shadow-sm file-card";
       card.setAttribute('data-filename', file.name.toLowerCase());
 
-      const title = `<p class="font-medium">${file.name}</p>`;
-      const time = `<p class="text-sm text-gray-500">${new Date(file.updated).toLocaleString()}</p>`;
+      const updatedDate = new Date(file.updated);
+      const isNew = (Date.now() - updatedDate.getTime()) < (24 * 60 * 60 * 1000);
+
+      const title = `<p class="font-medium"><span class="file-icon">${getFileIcon(file.type)}</span>${file.name}</p>`;
+      const time = `
+        <p class="text-sm text-gray-500">
+          ${updatedDate.toLocaleString()} ${isNew ? '<span class="text-green-600 font-bold">🆕</span>' : ''}
+        </p>`;
 
       let preview = "";
 
@@ -116,10 +139,14 @@ function enableSearch() {
   });
 }
 
+document.getElementById("refreshBtn").addEventListener("click", () => {
+  renderDashboard();
+});
+
 // Initial run
 renderDashboard().then(enableSearch);
 
-// Soft auto-refresh every 60 seconds
+// Auto-refresh every 60 seconds
 setInterval(() => {
   renderDashboard();
 }, 60000);
