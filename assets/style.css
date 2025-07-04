@@ -1,73 +1,43 @@
-/* Font and general */
+/* assets/style.css */
+
 body {
   font-family: 'Segoe UI', sans-serif;
-  transition: background 0.3s, color 0.3s;
 }
 
-/* Card hover effect */
 .card {
   transition: transform 0.2s ease-in-out;
 }
+
 .card:hover {
   transform: scale(1.02);
+  transition: transform 0.2s;
 }
 
-/* Image preview */
 .img-preview {
   object-fit: contain;
   max-height: 100px;
   border-radius: 8px;
 }
 
-/* Link style */
 a.link {
   color: #3b82f6;
   text-decoration: underline;
 }
+
 a.link:hover {
   opacity: 0.8;
 }
 
-/* Table style */
 table {
   border-collapse: collapse;
-  width: 100%;
 }
+
 th {
   background-color: #f3f4f6;
   font-weight: 600;
 }
-td, th {
-  padding: 6px;
-  border: 1px solid #ccc;
-}
 
-/* File type icons */
 .file-icon {
   font-size: 1.2rem;
   margin-right: 6px;
-}
-
-/* Light/Dark theme */
-body.dark {
-  background-color: #111827;
-  color: #e5e7eb;
-}
-body.dark .card {
-  background-color: #1f2937;
-  color: #f3f4f6;
-}
-body.dark input, body.dark textarea {
-  background-color: #374151;
-  color: #fff;
-  border-color: #555;
-}
-body.dark a {
-  color: #60a5fa;
-}
-body.dark th {
-  background-color: #374151;
-}
-body.dark td, body.dark th {
-  border-color: #4b5563;
 }

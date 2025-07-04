@@ -4,21 +4,21 @@
   <meta charset="UTF-8" />
   <title>📁 JunaidHub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
-<body class="light bg-gray-100 text-gray-800 px-4 sm:px-6 py-6 transition-colors duration-300">
+<body class="bg-gray-100 text-gray-800 px-4 sm:px-6 py-6">
 
   <header class="flex justify-between items-center mb-6">
     <h1 class="text-3xl font-bold text-blue-700">📁 JunaidHub</h1>
     <div class="flex gap-4 items-center">
-      <button id="refreshBtn" class="text-sm text-blue-600 border border-blue-500 px-2 py-1 rounded hover:bg-blue-100">🔁 Refresh</button>
-      <button id="darkModeToggle" class="text-sm text-gray-700 border px-2 py-1 rounded hover:bg-gray-200">🌙 Dark Mode</button>
+      <button id="refreshBtn" class="text-sm text-blue-600 border border-blue-500 px-2 py-1 rounded hover:bg-blue-50">🔁 Refresh</button>
       <a href="about.html" class="text-blue-600 hover:underline">About Me</a>
     </div>
   </header>
 
   <div class="mb-6">
-    <input type="text" id="searchInput" placeholder="Search file by name..." class="w-full md:w-1/2 px-4 py-2 border rounded shadow-sm focus:outline-none" />
+    <input type="text" id="searchInput" placeholder="Search file by name..." class="w-full md:w-1/2 px-4 py-2 border rounded shadow-sm focus:outline-none focus:ring" />
   </div>
 
   <div id="dashboard" class="space-y-6">

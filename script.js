@@ -151,21 +151,3 @@ setInterval(() => {
   renderDashboard();
 }, 60000);
 
-// --- Dark Mode Toggle ---
-const toggleBtn = document.getElementById('darkModeToggle');
-const root = document.body;
-
-// Load saved mode
-if (localStorage.getItem('theme') === 'dark') {
-  root.classList.remove('light');
-  root.classList.add('dark');
-  toggleBtn.textContent = '☀️ Light Mode';
-}
-
-toggleBtn.addEventListener('click', () => {
-  const isDark = root.classList.toggle('dark');
-  root.classList.toggle('light', !isDark);
-  localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  toggleBtn.textContent = isDark ? '☀️ Light Mode' : '🌙 Dark Mode';
-});
-
