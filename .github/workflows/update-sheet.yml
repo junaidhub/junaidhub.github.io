@@ -2,7 +2,8 @@ name: Update CSV from Google Sheet
 
 on:
   schedule:
-    - cron: '*/30 * * * *'  # runs every 30 minutes
+    - cron: '*/1 * * * *'  # Every 1 minute
+    # - cron: '*/30 * * * *'  # runs every 30 minutes
   workflow_dispatch:        # allows manual trigger
 
 jobs:
