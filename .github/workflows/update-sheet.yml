@@ -14,12 +14,12 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download CSV from Google Sheets
-        run: curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vQf7MnCTCnkvqzPZoMfzG5DhqLLQC0iJSsNnLU9OO4QFWvLUiTpiaF9S1RT3fZqC3qqzxNtVZlMXna4/pub?output=csv" -o data\Components list\Live Components List.csv
+        run: curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vQf7MnCTCnkvqzPZoMfzG5DhqLLQC0iJSsNnLU9OO4QFWvLUiTpiaF9S1RT3fZqC3qqzxNtVZlMXna4/pub?output=csv" -o "data\Components list\Live Components List.csv"
 
       - name: Commit and push if changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data\Components list\Live Components List.csv
+          git add "data\Components list\Live Components List.csv"
           git diff --cached --quiet || git commit -m "Update CSV from Google Sheets"
           git push
