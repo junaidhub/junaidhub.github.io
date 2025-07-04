@@ -39,24 +39,3 @@ th {
   font-size: 1.2rem;
   margin-right: 6px;
 }
-
-.dark-mode {
-  background-color: #1a202c;
-  color: #e2e8f0;
-}
-
-.dark-mode .card {
-  background-color: #2d3748;
-  color: #e2e8f0;
-}
-
-.dark-mode input,
-.dark-mode select {
-  background-color: #4a5568;
-  color: #f7fafc;
-  border-color: #718096;
-}
-
-.dark-mode a {
-  color: #90cdf4;
-}

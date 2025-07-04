@@ -56,7 +56,6 @@ async function renderDashboard() {
   const data = await res.json();
   const dashboard = document.getElementById('dashboard');
   const searchValue = document.getElementById('searchInput')?.value?.toLowerCase() || '';
-  const filterValue = document.getElementById('filterSelect')?.value || 'all';
   const scrollY = window.scrollY;
   dashboard.innerHTML = '';
 
@@ -67,9 +66,6 @@ async function renderDashboard() {
   });
 
   for (const folder of sortedData) {
-    const folderKey = `folder_${folder.folder}`;
-    const isOpen = localStorage.getItem(folderKey) === 'true';
-
     const section = document.createElement('div');
     section.className = "bg-white rounded-lg shadow p-4";
 
@@ -77,16 +73,15 @@ async function renderDashboard() {
     header.className = "flex justify-between items-center cursor-pointer";
     header.innerHTML = `
       <h2 class="text-xl font-semibold text-blue-600">${getFileIcon('folder')} ${folder.folder}</h2>
-      <span class="text-sm text-gray-500">${isOpen ? 'Click to collapse' : 'Click to expand'}</span>
+      <span class="text-sm text-gray-500">Click to expand/collapse</span>
     `;
 
     const content = document.createElement('div');
-    content.className = `grid grid-cols-1 gap-4 mt-4 folder-content ${isOpen ? '' : 'hidden'}`;
+    content.className = `grid grid-cols-1 gap-4 mt-4 folder-content`;
+
+    let hasVisibleCard = false;
 
     for (const file of folder.files) {
-      const fileTypeMatch = filterValue === 'all' || file.type === filterValue;
-      if (!fileTypeMatch) continue;
-
       const card = document.createElement('div');
       card.className = "card bg-gray-50 p-4 rounded border shadow-sm file-card";
       card.setAttribute('data-filename', file.name.toLowerCase());
@@ -115,20 +110,22 @@ async function renderDashboard() {
       const copyBtn = `<button class="copy-btn" onclick="navigator.clipboard.writeText('${file.url}')">📋 Copy URL</button>`;
 
       card.innerHTML = title + time + preview + copyBtn;
-      content.appendChild(card);
+      const matchesSearch = file.name.toLowerCase().includes(searchValue);
+      card.style.display = matchesSearch ? 'block' : 'none';
 
-      if (!file.name.toLowerCase().includes(searchValue)) {
-        card.style.display = 'none';
-      }
+      if (matchesSearch) hasVisibleCard = true;
+      content.appendChild(card);
     }
 
     section.appendChild(header);
     section.appendChild(content);
 
+    if (!hasVisibleCard) {
+      section.style.display = 'none';
+    }
+
     header.addEventListener('click', () => {
-      const isNowOpen = content.classList.toggle('hidden') === false;
-      header.querySelector('span').textContent = isNowOpen ? 'Click to collapse' : 'Click to expand';
-      localStorage.setItem(folderKey, isNowOpen);
+      content.classList.toggle('hidden');
     });
 
     dashboard.appendChild(section);
@@ -141,40 +138,18 @@ async function renderDashboard() {
 function enableSearch() {
   const input = document.getElementById('searchInput');
   input.addEventListener('input', () => {
-    const query = input.value.toLowerCase();
-    const cards = document.querySelectorAll('.file-card');
-
-    cards.forEach(card => {
-      const match = card.getAttribute('data-filename').includes(query);
-      card.style.display = match ? 'block' : 'none';
-    });
+    renderDashboard();
   });
-}
-
-function enableThemeToggle() {
-  const toggleBtn = document.getElementById('themeToggle');
-  toggleBtn?.addEventListener('click', () => {
-    document.getElementById('body').classList.toggle('dark-mode');
-  });
-}
-
-function enableFilter() {
-  const filterSelect = document.getElementById('filterSelect');
-  filterSelect?.addEventListener('change', () => renderDashboard());
 }
 
 document.getElementById("refreshBtn").addEventListener("click", () => {
   renderDashboard();
 });
 
-// Initial run
 renderDashboard().then(() => {
   enableSearch();
-  enableThemeToggle();
-  enableFilter();
 });
 
-// Auto-refresh every 60 seconds
 setInterval(() => {
   renderDashboard();
 }, 60000);
