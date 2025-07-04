@@ -33,6 +33,7 @@ function parseCSV(csvText) {
 function getFileIcon(type) {
   const map = {
     'txt': '📄',
+    'md': '📝',
     'csv': '📊',
     'pdf': '📕',
     'png': '🖼️',
@@ -48,16 +49,24 @@ function getFileIcon(type) {
 }
 
 async function renderDashboard() {
+  const spinner = document.getElementById('loadingSpinner');
+  spinner?.classList.remove('hidden');
+
   const res = await fetch('files.json');
   const data = await res.json();
   const dashboard = document.getElementById('dashboard');
-
   const searchValue = document.getElementById('searchInput')?.value?.toLowerCase() || '';
+  const filterValue = document.getElementById('filterSelect')?.value || 'all';
   const scrollY = window.scrollY;
-
   dashboard.innerHTML = '';
 
-  for (const folder of data) {
+  const sortedData = data.sort((a, b) => {
+    const maxA = Math.max(...a.files.map(f => new Date(f.updated).getTime()));
+    const maxB = Math.max(...b.files.map(f => new Date(f.updated).getTime()));
+    return maxB - maxA;
+  });
+
+  for (const folder of sortedData) {
     const folderKey = `folder_${folder.folder}`;
     const isOpen = localStorage.getItem(folderKey) === 'true';
 
@@ -75,6 +84,9 @@ async function renderDashboard() {
     content.className = `grid grid-cols-1 gap-4 mt-4 folder-content ${isOpen ? '' : 'hidden'}`;
 
     for (const file of folder.files) {
+      const fileTypeMatch = filterValue === 'all' || file.type === filterValue;
+      if (!fileTypeMatch) continue;
+
       const card = document.createElement('div');
       card.className = "card bg-gray-50 p-4 rounded border shadow-sm file-card";
       card.setAttribute('data-filename', file.name.toLowerCase());
@@ -83,14 +95,11 @@ async function renderDashboard() {
       const isNew = (Date.now() - updatedDate.getTime()) < (24 * 60 * 60 * 1000);
 
       const title = `<p class="font-medium"><span class="file-icon">${getFileIcon(file.type)}</span>${file.name}</p>`;
-      const time = `
-        <p class="text-sm text-gray-500">
-          ${updatedDate.toLocaleString()} ${isNew ? '<span class="text-green-600 font-bold">🆕</span>' : ''}
-        </p>`;
+      const time = `<p class="text-sm text-gray-500">${updatedDate.toLocaleString()} ${isNew ? '<span class="text-green-600 font-bold">🆕</span>' : ''}</p>`;
 
       let preview = "";
 
-      if (file.type === 'txt') {
+      if (file.type === 'txt' || file.type === 'md') {
         const contentText = await fetchText(file.url);
         preview = `<pre class="bg-white text-sm p-2 mt-2 rounded overflow-auto max-h-40 border">${contentText}</pre>`;
       } else if (file.type === 'csv') {
@@ -103,7 +112,9 @@ async function renderDashboard() {
         preview = `<a href="${file.url}" download class="text-blue-600 text-sm underline mt-2 inline-block">⬇️ Download</a>`;
       }
 
-      card.innerHTML = title + time + preview;
+      const copyBtn = `<button class="copy-btn" onclick="navigator.clipboard.writeText('${file.url}')">📋 Copy URL</button>`;
+
+      card.innerHTML = title + time + preview + copyBtn;
       content.appendChild(card);
 
       if (!file.name.toLowerCase().includes(searchValue)) {
@@ -123,6 +134,7 @@ async function renderDashboard() {
     dashboard.appendChild(section);
   }
 
+  spinner?.classList.add('hidden');
   window.scrollTo({ top: scrollY });
 }
 
@@ -139,15 +151,30 @@ function enableSearch() {
   });
 }
 
+function enableThemeToggle() {
+  const toggleBtn = document.getElementById('themeToggle');
+  toggleBtn?.addEventListener('click', () => {
+    document.getElementById('body').classList.toggle('dark-mode');
+  });
+}
+
+function enableFilter() {
+  const filterSelect = document.getElementById('filterSelect');
+  filterSelect?.addEventListener('change', () => renderDashboard());
+}
+
 document.getElementById("refreshBtn").addEventListener("click", () => {
   renderDashboard();
 });
 
 // Initial run
-renderDashboard().then(enableSearch);
+renderDashboard().then(() => {
+  enableSearch();
+  enableThemeToggle();
+  enableFilter();
+});
 
 // Auto-refresh every 60 seconds
 setInterval(() => {
   renderDashboard();
 }, 60000);
-

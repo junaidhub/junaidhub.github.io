@@ -1,7 +1,18 @@
-/* assets/style.css */
-
 body {
   font-family: 'Segoe UI', sans-serif;
+}
+
+.dark-mode {
+  background-color: #1a202c;
+  color: #f7fafc;
+}
+
+.dark-mode .bg-white {
+  background-color: #2d3748;
+}
+
+.dark-mode .text-blue-600 {
+  color: #63b3ed;
 }
 
 .card {
@@ -40,4 +51,17 @@ th {
 .file-icon {
   font-size: 1.2rem;
   margin-right: 6px;
+}
+
+.copy-btn {
+  margin-top: 8px;
+  padding: 4px 8px;
+  font-size: 12px;
+  background-color: #e5e7eb;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background-color: #cbd5e1;
 }
