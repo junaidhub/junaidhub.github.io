@@ -41,7 +41,6 @@ th {
   margin-right: 6px;
 }
 
-/* Fullscreen view styling */
 #folderViewer {
   animation: fadeIn 0.3s ease-in-out;
 }
@@ -51,7 +50,6 @@ th {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive grid tweaks */
 @media (max-width: 640px) {
   .file-card {
     font-size: 0.95rem;

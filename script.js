@@ -57,16 +57,28 @@ async function renderDashboard() {
     return maxB - maxA;
   });
 
-  for (const folder of sortedData) {
-    const section = document.createElement('div');
-    section.className = "bg-white rounded-lg shadow p-4 hover:shadow-md transition cursor-pointer";
-    section.innerHTML = `
-      <h2 class="text-xl font-semibold text-blue-600">${getFileIcon('folder')} ${folder.folder}</h2>
-    `;
+  const container = document.createElement('div');
+  container.className = "flex flex-col lg:flex-row gap-6";
 
-    section.addEventListener('click', () => openFolderView(folder.folder));
-    dashboard.appendChild(section);
+  const leftPanel = document.createElement('div');
+  leftPanel.className = "w-full lg:w-1/4 space-y-4";
+
+  const rightPanel = document.createElement('div');
+  rightPanel.className = "w-full lg:w-3/4";
+  rightPanel.innerHTML = `<div class='text-center text-gray-400 pt-20'>📁 Click a folder from the left to preview its contents</div>`;
+
+  for (const folder of sortedData) {
+    const folderBtn = document.createElement('div');
+    folderBtn.className = "bg-white rounded-lg shadow p-3 hover:shadow-md transition cursor-pointer border border-gray-200 hover:bg-blue-50";
+    folderBtn.innerHTML = `<h2 class="text-base font-semibold text-blue-700">${getFileIcon('folder')} ${folder.folder}</h2>`;
+
+    folderBtn.addEventListener('click', () => openFolderView(folder.folder));
+    leftPanel.appendChild(folderBtn);
   }
+
+  container.appendChild(leftPanel);
+  container.appendChild(rightPanel);
+  dashboard.appendChild(container);
 
   spinner?.classList.add('hidden');
 }
@@ -95,7 +107,11 @@ async function openFolderView(folderName) {
     let preview = "";
     if (file.type === 'txt' || file.type === 'md') {
       const contentText = await fetchText(file.url);
-      preview = `<pre class="bg-white text-sm p-2 mt-2 rounded overflow-auto max-h-40 border">${contentText}</pre>`;
+      preview = `
+        <div class="relative">
+          <pre class="bg-white text-sm p-2 mt-2 rounded overflow-auto max-h-40 border" id="content-${file.name}">${contentText}</pre>
+          <button class="absolute top-0 right-0 mt-2 mr-2 text-gray-500 hover:text-blue-600 text-sm" onclick="navigator.clipboard.writeText(document.getElementById('content-${file.name}').innerText)">📋</button>
+        </div>`;
     } else if (file.type === 'csv') {
       const contentText = await fetchText(file.url);
       const table = parseCSV(contentText);
@@ -106,9 +122,7 @@ async function openFolderView(folderName) {
       preview = `<a href="${file.url}" download class="text-blue-600 text-sm underline mt-2 inline-block">⬇️ Download</a>`;
     }
 
-    const copyBtn = `<button class="copy-btn mt-2 text-sm text-gray-600 underline" onclick="navigator.clipboard.writeText('${file.url}')">📋 Copy URL</button>`;
-
-    card.innerHTML = title + time + preview + copyBtn;
+    card.innerHTML = title + time + preview;
     folderContent.appendChild(card);
   }
 
