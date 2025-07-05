@@ -65,15 +65,23 @@ async function renderDashboard() {
 
   const rightPanel = document.createElement('div');
   rightPanel.className = "w-full lg:w-3/4";
-  rightPanel.innerHTML = `<div class='text-center text-gray-400 pt-20'>📁 Click a folder from the left to preview its contents</div>`;
 
   for (const folder of sortedData) {
+    const visibleFiles = folder.files.filter(file => file.name.toLowerCase().includes(searchValue));
+    if (!visibleFiles.length) continue;
+
     const folderBtn = document.createElement('div');
     folderBtn.className = "bg-white rounded-lg shadow p-3 hover:shadow-md transition cursor-pointer border border-gray-200 hover:bg-blue-50";
     folderBtn.innerHTML = `<h2 class="text-base font-semibold text-blue-700">${getFileIcon('folder')} ${folder.folder}</h2>`;
 
     folderBtn.addEventListener('click', () => openFolderView(folder.folder));
     leftPanel.appendChild(folderBtn);
+  }
+
+  if (!leftPanel.children.length) {
+    rightPanel.innerHTML = `<div class='text-center text-gray-400 pt-20'>🔍 No folders matched your search.</div>`;
+  } else {
+    rightPanel.innerHTML = `<div class='text-center text-gray-400 pt-20'>📁 Click a folder from the left to preview its contents</div>`;
   }
 
   container.appendChild(leftPanel);
