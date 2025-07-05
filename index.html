@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <title>📁 JunaidHub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="assets/tailwind.min.css" />
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body class="bg-gray-100 text-gray-800 px-4 sm:px-6 py-6">
@@ -12,7 +12,6 @@
   <header class="flex justify-between items-center mb-6">
     <h1 class="text-3xl font-bold text-blue-700">📁 JunaidHub</h1>
     <div class="flex gap-4 items-center">
-      <button id="refreshBtn" class="text-sm text-blue-600 border border-blue-500 px-2 py-1 rounded hover:bg-blue-50">🔁 Refresh</button>
       <a href="about.html" class="text-blue-600 hover:underline">About Me</a>
     </div>
   </header>
@@ -23,6 +22,15 @@
 
   <div id="dashboard" class="space-y-6">
     <div id="loadingSpinner" class="text-center text-gray-500">Loading files...</div>
+  </div>
+
+  <!-- Fullscreen folder viewer -->
+  <div id="folderViewer" class="hidden fixed inset-0 bg-white overflow-auto z-50 p-4 sm:p-6">
+    <div class="flex justify-between items-center mb-4">
+      <h2 id="folderTitle" class="text-2xl font-bold text-blue-700">📁 Folder</h2>
+      <button id="closeViewer" class="text-blue-600 hover:underline text-sm">&larr; Back</button>
+    </div>
+    <div id="folderContent" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
   </div>
 
   <footer class="mt-10 text-center text-sm text-gray-500">
