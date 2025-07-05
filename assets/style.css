@@ -1,61 +1,12 @@
-body {
-  font-family: 'Segoe UI', sans-serif;
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
 }
-
-.card {
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
 }
-
-.card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-}
-
-.img-preview {
-  object-fit: contain;
-  max-height: 130px;
-  width: auto;
-  border-radius: 8px;
-}
-
-a.link {
-  color: #3b82f6;
-  text-decoration: underline;
-}
-
-a.link:hover {
-  opacity: 0.8;
-}
-
-table {
-  border-collapse: collapse;
-}
-
-th {
-  background-color: #f3f4f6;
-  font-weight: 600;
-}
-
-.file-icon {
-  font-size: 1.2rem;
-  margin-right: 6px;
-}
-
-#folderViewer {
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 640px) {
-  .file-card {
-    font-size: 0.95rem;
-  }
-
-  .img-preview {
-    max-height: 100px;
-  }
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }

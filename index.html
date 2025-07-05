@@ -1,38 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>📁 JunaidHub</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="assets/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Explorer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-100 text-gray-800 px-4 sm:px-6 py-6">
+<body class="bg-gray-100">
 
-  <header class="flex justify-between items-center mb-6">
-    <h1 class="text-3xl font-bold text-blue-700">📁 JunaidHub</h1>
-    <a href="about.html" class="text-blue-600 hover:underline">About Me</a>
-  </header>
+<!-- Navigation and Sidebar (You can customize this part) -->
+<div class="flex">
+    <aside class="w-64 bg-gray-800 text-white min-h-screen p-4">
+        <h2 class="text-xl font-bold mb-4">Code Explorer</h2>
+        <nav>
+            <ul>
+                <li class="mb-2"><a href="#about-section" class="hover:underline">About Me</a></li>
+                <li class="mb-2"><a href="#files-section" class="hover:underline">All Files</a></li>
+            </ul>
+        </nav>
+    </aside>
 
-  <div class="mb-6">
-    <input type="text" id="searchInput" placeholder="Search file by name..." class="w-full md:w-1/2 px-4 py-2 border rounded shadow-sm focus:outline-none focus:ring" />
-  </div>
+    <main class="flex-1 p-6 overflow-auto">
+        <!-- About Me Section -->
+        <section id="about-section" class="mb-10">
+            <!-- Embedded from about.html -->
+            <!-- Navigation -->
+            <nav class="bg-white shadow-md sticky top-0 z-10">
+            <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+            <a class="text-2xl font-bold text-blue-500" href="#">About Me</a>
+            <div class="hidden md:flex space-x-8">
+            <a class="nav-link text-gray-700 hover:text-blue-500" href="#about">About</a>
+            <a class="nav-link text-gray-700 hover:text-blue-500" href="#skills">Skills</a>
+            <a class="nav-link text-gray-700 hover:text-blue-500" href="#experience">Experience</a>
+            </div>
+            </div>
+            </div>
+            </nav>
+        </section>
 
-  <div id="dashboard">
-    <div id="loadingSpinner" class="text-center text-gray-500">Loading files...</div>
-  </div>
+        <!-- All Files Section -->
+        <section id="files-section">
+            <h2 class="text-2xl font-bold mb-4">All Files</h2>
+            <div id="files-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Files will be dynamically inserted here -->
+            </div>
+        </section>
+    </main>
+</div>
 
-  <!-- Fullscreen Folder View -->
-  <div id="folderViewer" class="hidden">
-    <button id="closeViewer" class="mb-4 text-sm text-blue-600 underline">⬅ Back to folders</button>
-    <h2 id="folderTitle" class="text-2xl font-semibold text-blue-700 mb-4"></h2>
-    <div id="folderContent" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
-  </div>
-
-  <footer class="mt-10 text-center text-sm text-gray-500">
-    Maintain by Junaid Sahibole
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
