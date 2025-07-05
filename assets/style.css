@@ -3,17 +3,18 @@ body {
 }
 
 .card {
-  transition: transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .card:hover {
   transform: scale(1.02);
-  transition: transform 0.2s;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
 .img-preview {
   object-fit: contain;
-  max-height: 100px;
+  max-height: 130px;
+  width: auto;
   border-radius: 8px;
 }
 
@@ -38,4 +39,25 @@ th {
 .file-icon {
   font-size: 1.2rem;
   margin-right: 6px;
+}
+
+/* Fullscreen view styling */
+#folderViewer {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive grid tweaks */
+@media (max-width: 640px) {
+  .file-card {
+    font-size: 0.95rem;
+  }
+
+  .img-preview {
+    max-height: 100px;
+  }
 }
