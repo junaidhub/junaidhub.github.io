@@ -47,9 +47,9 @@ async function renderDashboard() {
   const res = await fetch('files.json');
   const data = await res.json();
   globalData = data;
-  const dashboard = document.getElementById('dashboard');
-  const searchValue = document.getElementById('searchInput')?.value?.toLowerCase() || '';
-  dashboard.innerHTML = '';
+
+  const folderList = document.getElementById('folderList');
+  folderList.innerHTML = '';
 
   const sortedData = data.sort((a, b) => {
     const maxA = Math.max(...a.files.map(f => new Date(f.updated).getTime()));
@@ -57,36 +57,14 @@ async function renderDashboard() {
     return maxB - maxA;
   });
 
-  const container = document.createElement('div');
-  container.className = "flex flex-col lg:flex-row gap-6";
-
-  const leftPanel = document.createElement('div');
-  leftPanel.className = "w-full lg:w-1/4 space-y-4";
-
-  const rightPanel = document.createElement('div');
-  rightPanel.className = "w-full lg:w-3/4";
-
   for (const folder of sortedData) {
-    const visibleFiles = folder.files.filter(file => file.name.toLowerCase().includes(searchValue));
-    if (!visibleFiles.length) continue;
-
     const folderBtn = document.createElement('div');
     folderBtn.className = "bg-white rounded-lg shadow p-3 hover:shadow-md transition cursor-pointer border border-gray-200 hover:bg-blue-50";
     folderBtn.innerHTML = `<h2 class="text-base font-semibold text-blue-700">${getFileIcon('folder')} ${folder.folder}</h2>`;
 
     folderBtn.addEventListener('click', () => openFolderView(folder.folder));
-    leftPanel.appendChild(folderBtn);
+    folderList.appendChild(folderBtn);
   }
-
-  if (!leftPanel.children.length) {
-    rightPanel.innerHTML = `<div class='text-center text-gray-400 pt-20'>🔍 No folders matched your search.</div>`;
-  } else {
-    rightPanel.innerHTML = `<div class='text-center text-gray-400 pt-20'>📁 Click a folder from the left to preview its contents</div>`;
-  }
-
-  container.appendChild(leftPanel);
-  container.appendChild(rightPanel);
-  dashboard.appendChild(container);
 
   spinner?.classList.add('hidden');
 }
@@ -138,16 +116,19 @@ async function openFolderView(folderName) {
   folderViewer.classList.remove('hidden');
 }
 
-function enableSearch() {
-  const input = document.getElementById('searchInput');
-  input.addEventListener('input', () => renderDashboard());
-}
-
 document.getElementById("closeViewer").addEventListener("click", () => {
   document.getElementById('folderViewer').classList.add('hidden');
   document.getElementById('dashboard').classList.remove('hidden');
 });
 
+document.getElementById("refreshBtn").addEventListener("click", () => {
+  renderDashboard();
+});
+
+document.getElementById("toggleSidebar")?.addEventListener("click", () => {
+  document.getElementById("sidebar")?.classList.toggle("hidden");
+});
+
 document.addEventListener("DOMContentLoaded", () => {
-  renderDashboard().then(() => enableSearch());
+  renderDashboard();
 });
