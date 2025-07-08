@@ -1,0 +1,12 @@
+[
+  {
+    "message": "📢 Welcome to JunaidHub",
+    "link": "https://example.com",
+    "target": "_blank"
+  },
+  {
+    "message": "🆕 New update available!",
+    "link": "#",
+    "target": "_self"
+  }
+]

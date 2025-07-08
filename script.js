@@ -45,19 +45,20 @@ let currentFolder = null;
 async function renderManualBanners(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
-  const manualBanners = await fetchJSON('banners.json');
+  const manualBanners = await fetchJSON('assets/banners.json');
   if (!Array.isArray(manualBanners) || manualBanners.length === 0) return;
 
   const wrapper = document.createElement('div');
-  wrapper.className = 'relative overflow-hidden';
+  wrapper.className = 'relative overflow-hidden h-40 w-full';
+
   const inner = document.createElement('div');
-  inner.className = 'flex transition-transform duration-500 ease-in-out';
+  inner.className = 'absolute w-full flex flex-col animate-scroll-vertical';
   wrapper.appendChild(inner);
   container.appendChild(wrapper);
 
   manualBanners.forEach(banner => {
     const slide = document.createElement('div');
-    slide.className = 'min-w-full px-4 py-2 text-sm text-yellow-800 bg-yellow-100 rounded';
+    slide.className = 'px-4 py-2 text-sm text-yellow-800 bg-yellow-100 border-b border-yellow-300';
     if (!banner.link || banner.link === '#') {
       slide.innerText = banner.message;
     } else {
@@ -70,12 +71,7 @@ async function renderManualBanners(containerId) {
     }
     inner.appendChild(slide);
   });
-
-  let index = 0;
-  setInterval(() => {
-    index = (index + 1) % manualBanners.length;
-    inner.style.transform = `translateX(-${index * 100}%)`;
-  }, 4000);
+}
 }
 
 document.addEventListener("DOMContentLoaded", async () => {
@@ -99,4 +95,3 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 });
-// e.g., renderDashboard, openFolderView, showTabContent, etc.

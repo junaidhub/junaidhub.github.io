@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>JunaidHub</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body class="bg-gray-50 text-gray-800 p-4 sm:p-6 font-sans">
@@ -17,28 +16,28 @@
   </header>
 
   <div class="max-w-7xl mx-auto">
-    <!-- 🔔 Notification Bar Updated -->
-    <div id="notificationBar" class="mb-4 overflow-hidden rounded shadow-sm"></div>
-
     <div class="flex flex-col lg:flex-row gap-6">
-      <!-- Sidebar -->
-      <aside id="sidebar" class="w-full lg:w-1/4">
-        <input id="searchInput" type="text" placeholder="Search folders..." class="w-full p-2 border rounded mb-3">
-        <div id="folderList" class="space-y-3"></div>
-      </aside>
+      <!-- Sidebar + Main Content -->
+      <div class="w-full lg:w-3/4 flex flex-col gap-6">
+        <aside id="sidebar" class="w-full">
+          <input id="searchInput" type="text" placeholder="Search folders..." class="w-full p-2 border rounded mb-3">
+          <div id="folderList" class="space-y-3"></div>
+        </aside>
 
-      <!-- Main Content -->
-      <main id="dashboard" class="w-full">
-        <div id="loadingSpinner" class="text-center text-gray-500">Loading folders...</div>
-      </main>
+        <main id="dashboard" class="w-full">
+          <div id="loadingSpinner" class="text-center text-gray-500">Loading folders...</div>
+        </main>
+
+        <section id="folderViewer" class="hidden mt-8">
+          <button id="closeViewer" class="text-blue-600 underline mb-4">← Back</button>
+          <h2 id="folderTitle" class="text-2xl font-semibold text-blue-700 mb-4"></h2>
+          <div id="folderContent"></div>
+        </section>
+      </div>
+
+      <!-- Right-side Banners -->
+      <aside id="notificationBar" class="w-full lg:w-1/4"></aside>
     </div>
-
-    <!-- Folder Viewer -->
-    <section id="folderViewer" class="hidden mt-8">
-      <button id="closeViewer" class="text-blue-600 underline mb-4">← Back</button>
-      <h2 id="folderTitle" class="text-2xl font-semibold text-blue-700 mb-4"></h2>
-      <div id="folderContent"></div>
-    </section>
   </div>
 
   <footer class="mt-12 text-center text-sm text-gray-400">
