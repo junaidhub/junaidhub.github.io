@@ -1,3 +1,5 @@
+// ✅ script.js — with Full View, Latest File, and Notification Board
+
 async function fetchText(url) {
   try {
     const res = await fetch(url);
@@ -48,7 +50,7 @@ async function renderDashboard() {
     return maxB - maxA;
   });
 
-  // Show Latest Updated File
+  // Show Latest File
   const latestFile = [...data.flatMap(f => f.files)]
     .sort((a, b) => new Date(b.updated) - new Date(a.updated))[0];
   if (latestFile) {
@@ -65,7 +67,6 @@ async function renderDashboard() {
   }
 
   let hasNew = false;
-
   for (const folder of sortedData) {
     const hasRecent = folder.files.some(f => (Date.now() - new Date(f.updated).getTime()) < 86400000);
     if (hasRecent) hasNew = true;
@@ -83,18 +84,10 @@ async function renderDashboard() {
     folderList.appendChild(div);
   }
 
-  // Custom Notices (manually set or from server)
+  // Notifications
   const customNotices = [
-    {
-      message: "📢 Electronics Components List Here",
-      link: "https://example.com/proposal.pdf",
-      target: "_blank"
-    },
-    {
-      message: "🗂️ Check Project Folder A",
-      link: "#",
-      target: "_self"
-    }
+    { message: "📢 View project proposal PDF", link: "https://example.com/proposal.pdf", target: "_blank" },
+    { message: "🗂️ Check Project Folder A", link: "#", target: "_self" }
   ];
 
   const noticeContainer = document.getElementById("customNotices");
@@ -110,9 +103,7 @@ async function renderDashboard() {
     noticeContainer.appendChild(div);
   });
 
-  const notificationBar = document.getElementById('notificationBar');
-  notificationBar.classList.toggle('hidden', !hasNew || currentFolder !== null);
-
+  document.getElementById('notificationBar').classList.toggle('hidden', !hasNew || currentFolder !== null);
   spinner?.classList.add('hidden');
 }
 
@@ -162,11 +153,10 @@ async function showTabContent(file) {
 
   if (file.type === 'txt' || file.type === 'md') {
     const text = await fetchText(file.url);
-    content = `
-      <div class="relative">
-        <button class="absolute top-0 right-0 text-sm text-gray-500 hover:text-blue-600" onclick="navigator.clipboard.writeText(document.getElementById('txt-${file.name}').innerText)">📋</button>
-        <pre id="txt-${file.name}" class="bg-gray-50 p-4 rounded border file-preview whitespace-pre-wrap">${text}</pre>
-      </div>`;
+    content = `<div class="relative">
+      <button class="absolute top-0 right-0 text-sm text-gray-500 hover:text-blue-600" onclick="navigator.clipboard.writeText(document.getElementById('txt-${file.name}').innerText)">📋</button>
+      <pre id="txt-${file.name}" class="bg-gray-50 p-4 rounded border file-preview whitespace-pre-wrap">${text}</pre>
+    </div>`;
   } else if (file.type === 'csv') {
     const csv = await fetchText(file.url);
     const table = parseCSV(csv);
@@ -181,19 +171,10 @@ async function showTabContent(file) {
     content = `<a href="${file.url}" download class="text-blue-600 underline">⬇️ Download File</a>`;
   }
 
-  const fullViewBtn = `
-    <button onclick="toggleFullView()" class="absolute top-2 right-2 text-xs text-blue-600 bg-white px-2 py-1 border rounded hover:bg-blue-50">
-      ⛶ Full View
-    </button>`;
-
+  const fullViewBtn = `<button onclick="toggleFullView()" class="absolute top-2 right-2 text-xs text-blue-600 bg-white px-2 py-1 border rounded hover:bg-blue-50">⛶ Full View</button>`;
   const backBtn = `<button class="mt-4 text-blue-600 underline" onclick="openFolderView('${currentFolder}')">← Back to folder</button>`;
 
-  wrapper.innerHTML = `
-    <div class="relative">
-      ${fullViewBtn}
-      ${title + content + backBtn}
-    </div>`;
-
+  wrapper.innerHTML = `<div class="relative">${fullViewBtn}${title + content + backBtn}</div>`;
   tabContent.appendChild(wrapper);
 }
 
