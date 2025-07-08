@@ -1,10 +1,52 @@
-// script.js
+async function fetchText(url) {
+  try {
+    const res = await fetch(url);
+    return await res.text();
+  } catch {
+    return "⚠️ Failed to load file.";
+  }
+}
 
-async function renderDashboard(filesJsonPath = 'assets/files.json') {
+function parseCSV(csvText) {
+  const rows = csvText.trim().split('\n').map(r => r.split(','));
+  const headers = rows[0];
+  const body = rows.slice(1);
+
+  const table = document.createElement('table');
+  table.className = "table-auto w-full text-sm border border-gray-300";
+
+  const thead = document.createElement('thead');
+  thead.innerHTML = `<tr class="bg-gray-200">${headers.map(h => `<th class="px-2 py-1 border">${h}</th>`).join('')}</tr>`;
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  body.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = row.map(col => `<td class="px-2 py-1 border">${col}</td>`).join('');
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+
+  return table;
+}
+
+function getFileIcon(type) {
+  const map = {
+    'txt': '📄', 'md': '📝', 'csv': '📊', 'pdf': '📕', 'png': '🖼️', 'jpg': '🖼️',
+    'jpeg': '🖼️', 'gif': '🖼️', 'zip': '🗜️', 'mp4': '🎞️', 'mp3': '🎵', 'folder': '📁'
+  };
+  return map[type.toLowerCase()] || '📦';
+}
+
+let globalData = [];
+let currentFolder = null;
+let openTabs = [];
+
+async function renderDashboard() {
   const spinner = document.getElementById('loadingSpinner');
   spinner?.classList.remove('hidden');
 
-  const res = await fetch(filesJsonPath);
+  const res = await fetch('files.json');
   const data = await res.json();
   globalData = data;
 
@@ -18,118 +60,137 @@ async function renderDashboard(filesJsonPath = 'assets/files.json') {
   });
 
   let hasNew = false;
-
   for (const folder of sortedData) {
-    const hasRecent = folder.files.some(f => (Date.now() - new Date(f.updated).getTime()) < 86400000);
+    const hasRecent = folder.files.some(f => (Date.now() - new Date(f.updated).getTime()) < (24 * 60 * 60 * 1000));
     if (hasRecent) hasNew = true;
 
-    const div = document.createElement('div');
-    div.className = "card cursor-pointer border border-gray-200";
-    div.setAttribute('tabindex', '0');
-    div.innerHTML = `
-      <div class="flex justify-between items-center">
-        <span class="font-medium text-blue-700">${folder.folder}</span>
-        ${hasRecent ? '<span class="bg-green-100 text-green-600 text-xs px-2 py-0.5 rounded">NEW</span>' : ''}
-      </div>
-    `;
-    div.addEventListener('click', () => openFolderView(folder.folder));
-    folderList.appendChild(div);
+    const folderBtn = document.createElement('div');
+    folderBtn.className = "bg-white rounded-lg shadow p-3 hover:shadow-md transition cursor-pointer border border-gray-200 hover:bg-blue-50 flex justify-between items-center";
+    folderBtn.setAttribute('tabindex', '0');
+    folderBtn.innerHTML = `<h2 class="text-base font-semibold text-blue-700">${getFileIcon('folder')} ${folder.folder}</h2>` +
+      (hasRecent ? '<span class="ml-2 text-sm bg-green-100 text-green-700 px-2 py-0.5 rounded">🆕</span>' : '');
+
+    folderBtn.addEventListener('click', () => openFolderView(folder.folder));
+    folderList.appendChild(folderBtn);
+  }
+
+  const notificationBar = document.getElementById('notificationBar');
+  if (notificationBar) {
+    notificationBar.classList.toggle('hidden', !hasNew || currentFolder !== null);
+    notificationBar.innerHTML = hasNew && currentFolder === null ?
+      '<div class="bg-yellow-100 text-yellow-700 text-sm px-4 py-2 rounded shadow">🆕 New file updates available in one or more folders</div>' : '';
   }
 
   spinner?.classList.add('hidden');
 }
 
-async function fetchText(url) {
-  try {
-    const res = await fetch(url);
-    return await res.text();
-  } catch {
-    return "⚠️ Failed to load file.";
+async function openFolderView(folderName) {
+  currentFolder = folderName;
+  const folderData = globalData.find(f => f.folder === folderName);
+  if (!folderData) return;
+
+  const folderViewer = document.getElementById('folderViewer');
+  const folderTitle = document.getElementById('folderTitle');
+  const folderContent = document.getElementById('folderContent');
+
+  folderTitle.innerText = `📁 ${folderName}`;
+  folderContent.innerHTML = '';
+  openTabs = [];
+
+  const tabHeader = document.createElement('div');
+  tabHeader.className = 'flex space-x-2 mb-4 overflow-x-auto';
+  const tabContent = document.createElement('div');
+  tabContent.id = 'tabContent';
+
+  folderContent.appendChild(tabHeader);
+  folderContent.appendChild(tabContent);
+
+  for (const file of folderData.files) {
+    const tab = document.createElement('button');
+    tab.className = 'bg-white px-4 py-2 border rounded hover:bg-blue-100 text-sm';
+    tab.innerText = file.name;
+    tab.addEventListener('click', () => showTabContent(file));
+    tabHeader.appendChild(tab);
   }
-}
 
-async function fetchJSON(url) {
-  try {
-    const res = await fetch(url);
-    return await res.json();
-  } catch {
-    return [];
+  if (folderData.files.length > 0) {
+    await showTabContent(folderData.files[0]);
   }
+
+  document.getElementById('dashboard').classList.add('hidden');
+  folderViewer.classList.remove('hidden');
+  document.getElementById('notificationBar')?.classList.add('hidden');
 }
 
-function parseCSV(csvText) {
-  const rows = csvText.trim().split('\n').map(r => r.split(','));
-  const headers = rows[0];
-  const body = rows.slice(1);
-
-  const table = document.createElement('table');
-  const thead = document.createElement('thead');
-  const tbody = document.createElement('tbody');
-
-  thead.innerHTML = `<tr>${headers.map(h => `<th>${h}</th>`).join('')}</tr>`;
-  body.forEach(row => {
-    const tr = document.createElement('tr');
-    tr.innerHTML = row.map(col => `<td>${col}</td>`).join('');
-    tbody.appendChild(tr);
-  });
-
-  table.appendChild(thead);
-  table.appendChild(tbody);
-  return table;
-}
-
-let globalData = [];
-let currentFolder = null;
-
-async function renderManualBanners(containerId) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  const manualBanners = await fetchJSON('assets/banners.json');
-  if (!Array.isArray(manualBanners) || manualBanners.length === 0) return;
+async function showTabContent(file) {
+  const tabContent = document.getElementById('tabContent');
+  tabContent.innerHTML = '';
 
   const wrapper = document.createElement('div');
-  wrapper.className = 'relative overflow-hidden h-40 w-full';
+  wrapper.className = "bg-white p-4 rounded-lg shadow border";
 
-  const inner = document.createElement('div');
-  inner.className = 'absolute w-full flex flex-col animate-scroll-vertical';
-  wrapper.appendChild(inner);
-  container.appendChild(wrapper);
+  const title = `<h3 class="text-lg font-semibold mb-2">${getFileIcon(file.type)} ${file.name}</h3>`;
+  let content = '';
 
-  manualBanners.forEach(banner => {
-    const slide = document.createElement('div');
-    slide.className = 'px-4 py-2 text-sm text-yellow-800 bg-yellow-100 border-b border-yellow-300';
-    if (!banner.link || banner.link === '#') {
-      slide.innerText = banner.message;
-    } else {
-      const a = document.createElement('a');
-      a.href = banner.link;
-      a.target = banner.target || '_self';
-      a.innerText = banner.message;
-      a.className = 'hover:underline';
-      slide.appendChild(a);
-    }
-    inner.appendChild(slide);
-  });
+  if (file.type === 'txt' || file.type === 'md') {
+    const text = await fetchText(file.url);
+    content = `
+      <div class="relative">
+        <button class="absolute top-0 right-0 text-sm text-gray-500 hover:text-blue-600" onclick="navigator.clipboard.writeText(document.getElementById('txt-${file.name}').innerText)">📋</button>
+        <pre id="txt-${file.name}" class="bg-gray-50 p-4 rounded border max-h-[60vh] overflow-auto whitespace-pre-wrap">${text}</pre>
+      </div>`;
+  } else if (file.type === 'csv') {
+    const csv = await fetchText(file.url);
+    const table = parseCSV(csv);
+    content = `<div class="overflow-auto max-h-[60vh]">${table.outerHTML}</div>`;
+  } else if (file.type.match(/(png|jpg|jpeg|gif)/)) {
+    content = `<img src="${file.url}" alt="${file.name}" class="max-h-[70vh] mx-auto rounded-lg" />`;
+  } else {
+    content = `<a href="${file.url}" download class="text-blue-600 underline">⬇️ Download File</a>`;
+  }
+
+  const backBtn = `<button class="mt-4 text-blue-600 underline" onclick="openFolderView('${currentFolder}')">⬅ Back to folder</button>`;
+
+  wrapper.innerHTML = title + content + backBtn;
+  tabContent.appendChild(wrapper);
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
-  await renderManualBanners("notificationBar");
-  await renderDashboard('assets/files.json');
+document.getElementById("closeViewer").addEventListener("click", () => {
+  currentFolder = null;
+  document.getElementById('folderViewer').classList.add('hidden');
+  document.getElementById('dashboard').classList.remove('hidden');
+  document.getElementById('notificationBar')?.classList.remove('hidden');
+});
 
-  document.getElementById("closeViewer").addEventListener("click", () => {
-    currentFolder = null;
-    document.getElementById('folderViewer').classList.add('hidden');
-    document.getElementById('dashboard').classList.remove('hidden');
-    document.getElementById('notificationBar')?.classList.remove('hidden');
-  });
+document.getElementById("refreshBtn").addEventListener("click", () => {
+  renderDashboard();
+});
 
-  const searchInput = document.getElementById('searchInput');
+document.getElementById("toggleSidebar")?.addEventListener("click", () => {
+  const sidebar = document.getElementById("sidebar");
+  const icon = document.getElementById("toggleSidebar");
+  sidebar.classList.toggle("hidden");
+  icon.innerText = sidebar.classList.contains("hidden") ? '➡' : '⬅';
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderDashboard();
+
+  const searchInput = document.createElement('input');
+  searchInput.type = 'text';
+  searchInput.id = 'searchInput';
+  searchInput.placeholder = 'Search folder...';
+  searchInput.className = 'w-full mt-4 p-2 border rounded text-base';
+
+  const folderList = document.getElementById('folderList');
+  folderList.parentElement.insertBefore(searchInput, folderList);
+
   searchInput.addEventListener('input', () => {
     const searchValue = searchInput.value.toLowerCase();
-    const folderItems = document.getElementById('folderList').children;
-    for (const item of folderItems) {
-      const text = item.innerText.toLowerCase();
-      item.style.display = text.includes(searchValue) ? '' : 'none';
-    }
+    const folderItems = folderList.querySelectorAll('div');
+    folderItems.forEach(folder => {
+      const text = folder.innerText.toLowerCase();
+      folder.style.display = text.includes(searchValue) ? '' : 'none';
+    });
   });
 });
