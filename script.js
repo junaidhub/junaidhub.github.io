@@ -86,7 +86,7 @@ async function renderDashboard() {
   // Custom Notices (manually set or from server)
   const customNotices = [
     {
-      message: "📢 View project proposal PDF",
+      message: "📢 Electronics Components List Here",
       link: "https://example.com/proposal.pdf",
       target: "_blank"
     },
