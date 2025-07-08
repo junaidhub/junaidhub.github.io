@@ -113,7 +113,8 @@ async function renderDashboard() {
   });
 
   const notificationBar = document.getElementById('notificationBar');
-  notificationBar.classList.toggle('hidden', !hasNew || currentFolder !== null);
+  // notificationBar.classList.toggle('hidden', !hasNew || currentFolder !== null);
+  notificationBar.classList.remove('hidden');
   spinner?.classList.add('hidden');
 }
 
