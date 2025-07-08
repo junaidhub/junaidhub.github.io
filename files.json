@@ -3,16 +3,10 @@
     "folder": "Components list",
     "files": [
       {
-        "name": "info.txt",
-        "type": "txt",
-        "url": "data/Components list/info.txt",
-        "updated": "2025-07-09T01:58:15.570112"
-      },
-      {
         "name": "Live Components List.csv",
         "type": "csv",
         "url": "data/Components list/Live Components List.csv",
-        "updated": "2025-07-09T01:55:00.320417"
+        "updated": "2025-07-05T01:55:22.060385"
       },
       {
         "name": "Idris Sheet.csv",

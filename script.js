@@ -30,6 +30,14 @@ function parseCSV(csvText) {
   return table;
 }
 
+function getFileIcon(type) {
+  const map = {
+    'txt': '📄', 'md': '📝', 'csv': '📊', 'pdf': '📕', 'png': '🖼️', 'jpg': '🖼️',
+    'jpeg': '🖼️', 'gif': '🖼️', 'zip': '🗜️', 'mp4': '🎞️', 'mp3': '🎵', 'folder': '📁'
+  };
+  return map[type.toLowerCase()] || '📦';
+}
+
 let globalData = [];
 let currentFolder = null;
 let openTabs = [];
@@ -45,9 +53,6 @@ async function renderDashboard() {
   const folderList = document.getElementById('folderList');
   folderList.innerHTML = '';
 
-  const notificationList = document.getElementById("notificationList");
-  if (notificationList) notificationList.innerHTML = '';
-
   const sortedData = data.sort((a, b) => {
     const maxA = Math.max(...a.files.map(f => new Date(f.updated).getTime()));
     const maxB = Math.max(...b.files.map(f => new Date(f.updated).getTime()));
@@ -55,7 +60,6 @@ async function renderDashboard() {
   });
 
   let hasNew = false;
-
   for (const folder of sortedData) {
     const hasRecent = folder.files.some(f => (Date.now() - new Date(f.updated).getTime()) < (24 * 60 * 60 * 1000));
     if (hasRecent) hasNew = true;
@@ -63,36 +67,18 @@ async function renderDashboard() {
     const folderBtn = document.createElement('div');
     folderBtn.className = "bg-white rounded-lg shadow p-3 hover:shadow-md transition cursor-pointer border border-gray-200 hover:bg-blue-50 flex justify-between items-center";
     folderBtn.setAttribute('tabindex', '0');
-    folderBtn.innerHTML = `<h2 class="text-base font-semibold text-blue-700">${folder.folder}</h2>`;
+    folderBtn.innerHTML = `<h2 class="text-base font-semibold text-blue-700">${getFileIcon('folder')} ${folder.folder}</h2>` +
+      (hasRecent ? '<span class="ml-2 text-sm bg-green-100 text-green-700 px-2 py-0.5 rounded">🆕</span>' : '');
 
     folderBtn.addEventListener('click', () => openFolderView(folder.folder));
     folderList.appendChild(folderBtn);
-
-    for (const file of folder.files) {
-      const isRecent = (Date.now() - new Date(file.updated).getTime()) < (24 * 60 * 60 * 1000);
-      if (isRecent && notificationList) {
-        const notifItem = document.createElement("div");
-        notifItem.className = "bg-white rounded shadow p-3 border hover:bg-blue-50";
-
-        notifItem.innerHTML = `
-          <div class="font-semibold text-sm text-blue-700 mb-1">${file.name}</div>
-          <div class="text-xs text-gray-500 mb-2">in <strong>${folder.folder}</strong></div>
-          <div class="flex gap-2">
-            <button class="text-xs text-white bg-blue-600 px-2 py-1 rounded hover:bg-blue-700" onclick="openFolderView('${folder.folder}'); showTabContentByName('${file.name}')">Open</button>
-            <button class="text-xs text-blue-600 underline" onclick="openFolderView('${folder.folder}')">Full View</button>
-          </div>
-        `;
-        notificationList.appendChild(notifItem);
-      }
-    }
   }
 
   const notificationBar = document.getElementById('notificationBar');
   if (notificationBar) {
     notificationBar.classList.toggle('hidden', !hasNew || currentFolder !== null);
-    notificationBar.innerHTML = hasNew && currentFolder === null
-      ? '<div class="bg-yellow-100 text-yellow-700 text-sm px-4 py-2 rounded shadow">🆕 New file updates available in one or more folders</div>'
-      : '';
+    notificationBar.innerHTML = hasNew && currentFolder === null ?
+      '<div class="bg-yellow-100 text-yellow-700 text-sm px-4 py-2 rounded shadow">🆕 New file updates available in one or more folders</div>' : '';
   }
 
   spinner?.classList.add('hidden');
@@ -107,7 +93,7 @@ async function openFolderView(folderName) {
   const folderTitle = document.getElementById('folderTitle');
   const folderContent = document.getElementById('folderContent');
 
-  folderTitle.innerText = `${folderName}`;
+  folderTitle.innerText = `📁 ${folderName}`;
   folderContent.innerHTML = '';
   openTabs = [];
 
@@ -143,7 +129,7 @@ async function showTabContent(file) {
   const wrapper = document.createElement('div');
   wrapper.className = "bg-white p-4 rounded-lg shadow border";
 
-  const title = `<h3 class="text-lg font-semibold mb-2">${file.name}</h3>`;
+  const title = `<h3 class="text-lg font-semibold mb-2">${getFileIcon(file.type)} ${file.name}</h3>`;
   let content = '';
 
   if (file.type === 'txt' || file.type === 'md') {
@@ -167,13 +153,6 @@ async function showTabContent(file) {
 
   wrapper.innerHTML = title + content + backBtn;
   tabContent.appendChild(wrapper);
-}
-
-function showTabContentByName(name) {
-  const folder = globalData.find(f => f.folder === currentFolder);
-  if (!folder) return;
-  const file = folder.files.find(f => f.name === name);
-  if (file) showTabContent(file);
 }
 
 document.getElementById("closeViewer").addEventListener("click", () => {
