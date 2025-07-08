@@ -48,6 +48,22 @@ async function renderDashboard() {
     return maxB - maxA;
   });
 
+  // Show Latest Updated File
+  const latestFile = [...data.flatMap(f => f.files)]
+    .sort((a, b) => new Date(b.updated) - new Date(a.updated))[0];
+  if (latestFile) {
+    const dashboard = document.getElementById('dashboard');
+    const latestDiv = document.createElement('div');
+    latestDiv.className = 'bg-blue-50 border border-blue-200 p-4 rounded mb-4';
+    latestDiv.innerHTML = `
+      <div class="text-sm text-blue-800 mb-2">📌 <strong>Latest Updated File:</strong></div>
+      <div class="flex justify-between items-center text-sm">
+        <span>${latestFile.name}</span>
+        <a href="${latestFile.url}" target="_blank" class="text-blue-600 underline text-xs">Open</a>
+      </div>`;
+    dashboard.prepend(latestDiv);
+  }
+
   let hasNew = false;
 
   for (const folder of sortedData) {
@@ -67,11 +83,35 @@ async function renderDashboard() {
     folderList.appendChild(div);
   }
 
+  // Custom Notices (manually set or from server)
+  const customNotices = [
+    {
+      message: "📢 View project proposal PDF",
+      link: "https://example.com/proposal.pdf",
+      target: "_blank"
+    },
+    {
+      message: "🗂️ Check Project Folder A",
+      link: "#",
+      target: "_self"
+    }
+  ];
+
+  const noticeContainer = document.getElementById("customNotices");
+  noticeContainer.innerHTML = '';
+  customNotices.forEach(notice => {
+    const div = document.createElement('div');
+    div.className = 'bg-white border-l-4 border-yellow-400 p-3 text-sm rounded shadow';
+    div.innerHTML = `
+      <div class="flex justify-between items-center">
+        <span>${notice.message}</span>
+        ${notice.link ? `<a href="${notice.link}" target="${notice.target}" class="text-blue-600 underline text-xs">Open</a>` : ''}
+      </div>`;
+    noticeContainer.appendChild(div);
+  });
+
   const notificationBar = document.getElementById('notificationBar');
   notificationBar.classList.toggle('hidden', !hasNew || currentFolder !== null);
-  notificationBar.innerHTML = hasNew && currentFolder === null
-    ? `<div class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded text-sm">New files available in one or more folders</div>`
-    : '';
 
   spinner?.classList.add('hidden');
 }
@@ -141,13 +181,31 @@ async function showTabContent(file) {
     content = `<a href="${file.url}" download class="text-blue-600 underline">⬇️ Download File</a>`;
   }
 
+  const fullViewBtn = `
+    <button onclick="toggleFullView()" class="absolute top-2 right-2 text-xs text-blue-600 bg-white px-2 py-1 border rounded hover:bg-blue-50">
+      ⛶ Full View
+    </button>`;
+
   const backBtn = `<button class="mt-4 text-blue-600 underline" onclick="openFolderView('${currentFolder}')">← Back to folder</button>`;
 
-  wrapper.innerHTML = title + content + backBtn;
+  wrapper.innerHTML = `
+    <div class="relative">
+      ${fullViewBtn}
+      ${title + content + backBtn}
+    </div>`;
+
   tabContent.appendChild(wrapper);
 }
 
-// Sidebar search
+function toggleFullView() {
+  const el = document.getElementById("tabContent");
+  if (!document.fullscreenElement) {
+    el.requestFullscreen().catch(err => alert("Full screen error: " + err));
+  } else {
+    document.exitFullscreen();
+  }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   renderDashboard();
 
@@ -156,10 +214,6 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('folderViewer').classList.add('hidden');
     document.getElementById('dashboard').classList.remove('hidden');
     document.getElementById('notificationBar')?.classList.remove('hidden');
-  });
-
-  document.getElementById("refreshBtn").addEventListener("click", () => {
-    renderDashboard();
   });
 
   const searchInput = document.getElementById('searchInput');
