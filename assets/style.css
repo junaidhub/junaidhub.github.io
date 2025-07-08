@@ -41,3 +41,15 @@ th {
   background-color: #f3f4f6;
   font-weight: bold;
 }
+/* Rotating banner support */
+#notificationBar .flex {
+  transition: transform 0.5s ease-in-out;
+}
+
+#notificationBar .rounded {
+  border-radius: 0.5rem;
+}
+
+#notificationBar .min-w-full {
+  min-width: 100%;
+}
