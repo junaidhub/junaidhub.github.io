@@ -1,5 +1,44 @@
 // script.js
 
+async function renderDashboard(filesJsonPath = 'assets/files.json') {
+  const spinner = document.getElementById('loadingSpinner');
+  spinner?.classList.remove('hidden');
+
+  const res = await fetch(filesJsonPath);
+  const data = await res.json();
+  globalData = data;
+
+  const folderList = document.getElementById('folderList');
+  folderList.innerHTML = '';
+
+  const sortedData = data.sort((a, b) => {
+    const maxA = Math.max(...a.files.map(f => new Date(f.updated).getTime()));
+    const maxB = Math.max(...b.files.map(f => new Date(f.updated).getTime()));
+    return maxB - maxA;
+  });
+
+  let hasNew = false;
+
+  for (const folder of sortedData) {
+    const hasRecent = folder.files.some(f => (Date.now() - new Date(f.updated).getTime()) < 86400000);
+    if (hasRecent) hasNew = true;
+
+    const div = document.createElement('div');
+    div.className = "card cursor-pointer border border-gray-200";
+    div.setAttribute('tabindex', '0');
+    div.innerHTML = `
+      <div class="flex justify-between items-center">
+        <span class="font-medium text-blue-700">${folder.folder}</span>
+        ${hasRecent ? '<span class="bg-green-100 text-green-600 text-xs px-2 py-0.5 rounded">NEW</span>' : ''}
+      </div>
+    `;
+    div.addEventListener('click', () => openFolderView(folder.folder));
+    folderList.appendChild(div);
+  }
+
+  spinner?.classList.add('hidden');
+}
+
 async function fetchText(url) {
   try {
     const res = await fetch(url);
@@ -72,11 +111,10 @@ async function renderManualBanners(containerId) {
     inner.appendChild(slide);
   });
 }
-}
 
 document.addEventListener("DOMContentLoaded", async () => {
   await renderManualBanners("notificationBar");
-  await renderDashboard();
+  await renderDashboard('assets/files.json');
 
   document.getElementById("closeViewer").addEventListener("click", () => {
     currentFolder = null;
