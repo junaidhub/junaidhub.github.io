@@ -86,15 +86,23 @@ async function renderDashboard() {
   }
 
   // Custom Notices (manual)
-  const customNotices = [
+  // const customNotices = [
+  //   {
+  //     message: "📢 View project proposal PDF",
+  //     link: "https://example.com/proposal.pdf",
+  //     target: "_blank"
+  //   },
+  //   {
+  //     message: "🗂️ Check Project Folder A",
+  //     link: "#",
+  //     target: "_self"
+  //   }
+  // ];
+
+    const customNotices = [
     {
-      message: "📢 View project proposal PDF",
-      link: "https://example.com/proposal.pdf",
-      target: "_blank"
-    },
-    {
-      message: "🗂️ Check Project Folder A",
-      link: "#",
+      message: "Components List Here",
+      link: "data/Components List",
       target: "_self"
     }
   ];
