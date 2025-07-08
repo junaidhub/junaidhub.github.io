@@ -85,43 +85,28 @@ async function renderDashboard() {
     folderList.appendChild(div);
   }
 
-  // Custom Notices (manual)
-  // const customNotices = [
-  //   {
-  //     message: "📢 View project proposal PDF",
-  //     link: "https://example.com/proposal.pdf",
-  //     target: "_blank"
-  //   },
-  //   {
-  //     message: "🗂️ Check Project Folder A",
-  //     link: "#",
-  //     target: "_self"
-  //   }
-  // ];
+  // Fetch notices from external JSON file
+  try {
+    const noticeRes = await fetch('notices.json');
+    const customNotices = await noticeRes.json();
 
-    const customNotices = [
-    {
-      message: "Components List Here",
-      link: "data/Components List",
-      target: "_self"
-    }
-  ];
-
-  const noticeContainer = document.getElementById("customNotices");
-  noticeContainer.innerHTML = '';
-  customNotices.forEach(notice => {
-    const div = document.createElement('div');
-    div.className = 'bg-white border-l-4 border-yellow-400 p-3 text-sm rounded shadow';
-    div.innerHTML = `
-      <div class="flex justify-between items-center">
-        <span>${notice.message}</span>
-        ${notice.link ? `<a href="${notice.link}" target="${notice.target}" class="text-blue-600 underline text-xs">Open</a>` : ''}
-      </div>`;
-    noticeContainer.appendChild(div);
-  });
+    const noticeContainer = document.getElementById("customNotices");
+    noticeContainer.innerHTML = '';
+    customNotices.forEach(notice => {
+      const div = document.createElement('div');
+      div.className = 'bg-white border-l-4 border-yellow-400 p-3 text-sm rounded shadow';
+      div.innerHTML = `
+        <div class="flex justify-between items-center">
+          <span>${notice.message}</span>
+          ${notice.link ? `<a href="${notice.link}" target="${notice.target}" class="text-blue-600 underline text-xs">Open</a>` : ''}
+        </div>`;
+      noticeContainer.appendChild(div);
+    });
+  } catch (e) {
+    console.error("Failed to load notices.json", e);
+  }
 
   const notificationBar = document.getElementById('notificationBar');
-  // notificationBar.classList.toggle('hidden', !hasNew || currentFolder !== null);
   notificationBar.classList.remove('hidden');
   spinner?.classList.add('hidden');
 }
