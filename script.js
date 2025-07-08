@@ -78,7 +78,25 @@ async function renderManualBanners(containerId) {
   }, 4000);
 }
 
-// ...rest of script remains unchanged
+document.addEventListener("DOMContentLoaded", async () => {
+  await renderManualBanners("notificationBar");
+  await renderDashboard();
 
-// Place the rest of your script.js content here below this line (unchanged).
+  document.getElementById("closeViewer").addEventListener("click", () => {
+    currentFolder = null;
+    document.getElementById('folderViewer').classList.add('hidden');
+    document.getElementById('dashboard').classList.remove('hidden');
+    document.getElementById('notificationBar')?.classList.remove('hidden');
+  });
+
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', () => {
+    const searchValue = searchInput.value.toLowerCase();
+    const folderItems = document.getElementById('folderList').children;
+    for (const item of folderItems) {
+      const text = item.innerText.toLowerCase();
+      item.style.display = text.includes(searchValue) ? '' : 'none';
+    }
+  });
+});
 // e.g., renderDashboard, openFolderView, showTabContent, etc.
