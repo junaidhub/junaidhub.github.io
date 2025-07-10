@@ -58,8 +58,4 @@ th {
   .img-preview {
     max-height: 100px;
   }
-
-  #sidebar {
-    display: none;
-  }
 }
