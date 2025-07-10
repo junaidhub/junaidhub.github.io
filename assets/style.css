@@ -1,16 +1,18 @@
+/* Base font */
 body {
   font-family: 'Segoe UI', sans-serif;
 }
 
+/* Card hover effect */
 .card {
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
-
 .card:hover {
   transform: scale(1.02);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
 
+/* File image preview */
 .img-preview {
   object-fit: contain;
   max-height: 130px;
@@ -18,38 +20,46 @@ body {
   border-radius: 8px;
 }
 
+/* Link style */
 a.link {
   color: #3b82f6;
   text-decoration: underline;
 }
-
 a.link:hover {
   opacity: 0.8;
 }
 
+/* Table styling */
 table {
   border-collapse: collapse;
+  width: 100%;
 }
-
+th, td {
+  border: 1px solid #d1d5db; /* Tailwind gray-300 */
+  padding: 0.5rem;
+  text-align: left;
+}
 th {
-  background-color: #f3f4f6;
+  background-color: #f3f4f6; /* Tailwind gray-100 */
   font-weight: 600;
 }
 
+/* File icon */
 .file-icon {
   font-size: 1.2rem;
   margin-right: 6px;
 }
 
+/* Fade-in animation for folder viewer */
 #folderViewer {
   animation: fadeIn 0.3s ease-in-out;
 }
-
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* Responsive tweaks */
 @media (max-width: 640px) {
   .file-card {
     font-size: 0.95rem;
@@ -58,4 +68,66 @@ th {
   .img-preview {
     max-height: 100px;
   }
+}
+
+/* Tab active styling */
+.tab-active {
+  background-color: #dbeafe; /* Tailwind blue-100 */
+  color: #1d4ed8;            /* Tailwind blue-700 */
+  font-weight: 600;
+}
+
+/* Badge / New file label */
+.badge {
+  font-size: 0.75rem;
+  background-color: #d1fae5;
+  color: #047857;
+  padding: 2px 6px;
+  border-radius: 9999px;
+}
+
+/* Folder hover effect */
+.folder-item {
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+.folder-item:hover {
+  background-color: #eff6ff;
+}
+
+/* Sticky sidebar on large screens */
+@media (min-width: 1024px) {
+  #sidebar {
+    position: sticky;
+    top: 1rem;
+  }
+}
+
+/* Pre block style (text, JSON) */
+pre {
+  background-color: #f9fafb;
+  padding: 1rem;
+  border-radius: 6px;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+/* Dark mode support (optional) */
+body.dark {
+  background-color: #111827;
+  color: #f9fafb;
+}
+body.dark a.link {
+  color: #60a5fa;
+}
+body.dark table th {
+  background-color: #1f2937;
+}
+body.dark .badge {
+  background-color: #064e3b;
+  color: #d1fae5;
+}
+body.dark pre {
+  background-color: #1e293b;
+  color: #f1f5f9;
 }
