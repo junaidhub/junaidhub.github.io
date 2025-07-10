@@ -1,3 +1,5 @@
+// Updated script.js for JunaidHub Showcase UI
+
 async function fetchText(url) {
   try {
     const res = await fetch(url);
@@ -40,18 +42,17 @@ function getFileIcon(type) {
 
 let globalData = [];
 let currentFolder = null;
-let openTabs = [];
 
 async function renderDashboard() {
-  const spinner = document.getElementById('loadingSpinner');
-  spinner?.classList.remove('hidden');
-
   const res = await fetch('files.json');
   const data = await res.json();
   globalData = data;
 
   const folderList = document.getElementById('folderList');
   folderList.innerHTML = '';
+
+  const dashboard = document.getElementById('dashboard');
+  dashboard.innerHTML = '';
 
   const sortedData = data.sort((a, b) => {
     const maxA = Math.max(...a.files.map(f => new Date(f.updated).getTime()));
@@ -60,18 +61,22 @@ async function renderDashboard() {
   });
 
   let hasNew = false;
+
   for (const folder of sortedData) {
     const hasRecent = folder.files.some(f => (Date.now() - new Date(f.updated).getTime()) < (24 * 60 * 60 * 1000));
     if (hasRecent) hasNew = true;
 
     const folderBtn = document.createElement('div');
-    folderBtn.className = "bg-white rounded-lg shadow p-3 hover:shadow-md transition cursor-pointer border border-gray-200 hover:bg-blue-50 flex justify-between items-center";
-    folderBtn.setAttribute('tabindex', '0');
-    folderBtn.innerHTML = `<h2 class="text-base font-semibold text-blue-700">${getFileIcon('folder')} ${folder.folder}</h2>` +
-      (hasRecent ? '<span class="ml-2 text-sm bg-green-100 text-green-700 px-2 py-0.5 rounded">🆕</span>' : '');
+    folderBtn.className = "bg-white card rounded-lg shadow p-4 cursor-pointer hover:bg-blue-50 border";
+    folderBtn.innerHTML = `<div class='flex justify-between items-center'>
+        <h2 class='text-lg font-semibold text-blue-700'>${getFileIcon('folder')} ${folder.folder}</h2>
+        ${hasRecent ? "<span class='bg-green-100 text-green-700 text-xs px-2 py-0.5 rounded'>🆕</span>" : ""}
+      </div>
+      <p class='text-sm text-gray-500 mt-2'>${folder.files.length} file(s)</p>`;
 
     folderBtn.addEventListener('click', () => openFolderView(folder.folder));
     folderList.appendChild(folderBtn);
+    dashboard.appendChild(folderBtn.cloneNode(true));
   }
 
   const notificationBar = document.getElementById('notificationBar');
@@ -80,8 +85,6 @@ async function renderDashboard() {
     notificationBar.innerHTML = hasNew && currentFolder === null ?
       '<div class="bg-yellow-100 text-yellow-700 text-sm px-4 py-2 rounded shadow">🆕 New file updates available in one or more folders</div>' : '';
   }
-
-  spinner?.classList.add('hidden');
 }
 
 async function openFolderView(folderName) {
@@ -95,7 +98,6 @@ async function openFolderView(folderName) {
 
   folderTitle.innerText = `📁 ${folderName}`;
   folderContent.innerHTML = '';
-  openTabs = [];
 
   const tabHeader = document.createElement('div');
   tabHeader.className = 'flex space-x-2 mb-4 overflow-x-auto';
@@ -134,8 +136,7 @@ async function showTabContent(file) {
 
   if (file.type === 'txt' || file.type === 'md') {
     const text = await fetchText(file.url);
-    content = `
-      <div class="relative">
+    content = `<div class="relative">
         <button class="absolute top-0 right-0 text-sm text-gray-500 hover:text-blue-600" onclick="navigator.clipboard.writeText(document.getElementById('txt-${file.name}').innerText)">📋</button>
         <pre id="txt-${file.name}" class="bg-gray-50 p-4 rounded border max-h-[60vh] overflow-auto whitespace-pre-wrap">${text}</pre>
       </div>`;
@@ -168,26 +169,16 @@ document.getElementById("refreshBtn").addEventListener("click", () => {
 
 document.getElementById("toggleSidebar")?.addEventListener("click", () => {
   const sidebar = document.getElementById("sidebar");
-  const icon = document.getElementById("toggleSidebar");
   sidebar.classList.toggle("hidden");
-  icon.innerText = sidebar.classList.contains("hidden") ? '➡' : '⬅';
 });
 
 document.addEventListener("DOMContentLoaded", () => {
   renderDashboard();
 
-  const searchInput = document.createElement('input');
-  searchInput.type = 'text';
-  searchInput.id = 'searchInput';
-  searchInput.placeholder = 'Search folder...';
-  searchInput.className = 'w-full mt-4 p-2 border rounded text-base';
-
-  const folderList = document.getElementById('folderList');
-  folderList.parentElement.insertBefore(searchInput, folderList);
-
+  const searchInput = document.getElementById('searchInput');
   searchInput.addEventListener('input', () => {
     const searchValue = searchInput.value.toLowerCase();
-    const folderItems = folderList.querySelectorAll('div');
+    const folderItems = document.getElementById('folderList').querySelectorAll('div');
     folderItems.forEach(folder => {
       const text = folder.innerText.toLowerCase();
       folder.style.display = text.includes(searchValue) ? '' : 'none';
