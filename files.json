@@ -26,6 +26,12 @@
     "folder": "Raspberrypi Guide",
     "files": [
       {
+        "name": "Git & GitHub Basic to Advanced Commands.txt",
+        "type": "txt",
+        "url": "data/Raspberrypi Guide/Git & GitHub Basic to Advanced Commands.txt",
+        "updated": "2025-07-14T22:59:22.699754"
+      },
+      {
         "name": "GUI + GPIO Hardware Integration (PyQt5).txt",
         "type": "txt",
         "url": "data/Raspberrypi Guide/GUI + GPIO Hardware Integration (PyQt5).txt",
@@ -86,12 +92,6 @@
         "updated": "2025-07-04T22:32:22.940966"
       },
       {
-        "name": "Git & GitHub Basic to Advanced Commands.txt",
-        "type": "txt",
-        "url": "data/Raspberrypi Guide/Git & GitHub Basic to Advanced Commands.txt",
-        "updated": "2025-07-04T22:31:53.911396"
-      },
-      {
         "name": "Using rc.local to Run Scripts on Boot.txt",
         "type": "txt",
         "url": "data/Raspberrypi Guide/Using rc.local to Run Scripts on Boot.txt",
@@ -108,6 +108,29 @@
         "type": "txt",
         "url": "data/Raspberrypi Guide/GPIO Input, Output, PWM with Pull-Up Down.txt",
         "updated": "2025-07-04T22:27:34.061927"
+      }
+    ]
+  },
+  {
+    "folder": "Sandeep Sir Components",
+    "files": [
+      {
+        "name": "IMG_20241226_171916.jpg",
+        "type": "jpg",
+        "url": "data/Sandeep Sir Components/IMG_20241226_171916.jpg",
+        "updated": "2025-07-15T11:23:14"
+      },
+      {
+        "name": "IMG_20241226_171919.jpg",
+        "type": "jpg",
+        "url": "data/Sandeep Sir Components/IMG_20241226_171919.jpg",
+        "updated": "2025-07-15T11:23:14"
+      },
+      {
+        "name": "IMG_20241226_171924.jpg",
+        "type": "jpg",
+        "url": "data/Sandeep Sir Components/IMG_20241226_171924.jpg",
+        "updated": "2025-07-15T11:23:11"
       }
     ]
   }
