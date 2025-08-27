@@ -1,1 +1,15 @@
 Sr No,Component Name,Description,Ref By
+1,Ad548jn,"Low input bias current, low noise, precision JFET operational amplifier.",Konain
+2,ad829jn,"High speed, low distortion, wideband precision operational amplifier.",Konain
+3,lm324,Quad low-power operational amplifier with wide supply range.,Konain
+4,op80gd,"Low noise, low offset, precision operational amplifier.",Konain
+5,op07,"Low offset voltage, precision general-purpose operational amplifier.",Konain
+6,op07dp,"Improved precision version of OP07, low drift operational amplifier.",Konain
+7,op22hp,Dual precision operational amplifier with low offset and drift.,Konain
+8,lf347n,"Quad JFET-input operational amplifier, low noise, wide bandwidth.",Konain
+9,ad7524jn,"8-bit digital-to-analog converter, compatible with microprocessor interfaces.",Konain
+10,ad847jn,"High precision, low noise, fast settling instrumentation amplifier.",Konain
+11,ad828an,"Dual high-speed, low noise, wideband operational amplifier.",Konain
+12,op177fp,Ultraprecision operational amplifier with very low offset voltage.,Konain
+13,op90gp,Micropower precision operational amplifier with low supply current.,Konain
+14,ir33-a,"Infrared LED emitter, high efficiency, used in optoelectronic applications.",Konain
