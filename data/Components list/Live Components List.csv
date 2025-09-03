@@ -17,11 +17,11 @@ Sr No,Component Name,Description,Ref By
 16,TEMD6200FX01,Photodiode  AEC-Q100  60 °  100 pA  540 nm  0805-2,Junaid 
 17,150044M155260,LED  Red  Green  Blue  SMD  140 °  Square  R 5mA  G 5mA  B 5mA,Junaid 
 18,XL-1615RGBC-YG,XL-1615RGBC-YG-XINGLIGHT-SMD-4P 1.6×1.5mm RGB LEDs ROHS,Junaid 
-19,,,Junaid 
-20,,,Junaid 
-21,,,
-22,,,
-23,,,
+19,MCP3201T-CI/SN,MICROCHIP-Analogue to Digital Converter  12 bit  100 kSPS  Pseudo Differential  Single Ended  SPI  Single,Junaid 
+20,IRLR7843TRPBF,N Channel MOSFET (Metal Oxide)  DPAK  SC 63  TO 252 3,Junaid 
+21,520-80-20-5PXDU,Crystals 8MHz -55 to +125C,Junaid 
+22,SPC20480,SPC20480-Jumper  Shunt  2Mm  2Way,Junaid 
+23,SMD LED 1206,1206 Surface Mount LED White,Junaid 
 24,,,
 25,,,
 26,,,

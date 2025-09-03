@@ -1,4 +1,4 @@
-,IC,Description,Detailed Description,,
+,IC,Description,Detailed Description,Location,
 1,MCP6442-E/SN-ND,IC CMOS 2 CIRCUIT 8SOIC,CMOS Amplifier 2 Circuit Rail-to-Rail 8-SOIC,B6,
 2,"OPA349UA
 OPA380AIDGKT","IC OPAMP GP 1 CIRCUIT 8SOIC
@@ -7,8 +7,8 @@ Precesion OPAPMP","General Purpose Amplifier 1 Circuit Rail-to-Rail
 3,CD74HC4051E,"IC MUX/DEMUX 8:1 130OHM 16DIP
 10 Ohm 8:1SMD
 DIP",,,
-4,AD7714ANZ-5-ND,IC ADC 24BIT SIGMA-DELTA 24DIP, 24 Bit Analog to Digital Converter 3- 
-5 Input 1 Sigma-Delta",B3,
+4,AD7714ANZ-5-ND,IC ADC 24BIT SIGMA-DELTA 24DIP, 24 Bit Analog to Digital Converter 3-  5 Input 1 Sigma-Delta,B3,
+,,,,,
 5,CD4052BE,IC MUX/DEMUX DUAL 4:1 16DIP,,,
 6,CD74HC4053E,IC MUX/DEMUX TRIPLE 2:1 16DIP,,,
 7,CD4067BM,IC MUX/DEMUX 16:1 24SOIC,,,
