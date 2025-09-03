@@ -14,9 +14,9 @@ Sr No,Component Name,Description,Ref By
 13,op90gp,Micropower precision operational amplifier with low supply current.,Konain
 14,ir33-a,Infrared LED emitter  high efficiency  used in optoelectronic applications.,Konain
 15,TL431,Location at Almari No. IDDC/WS-131/SA-5,Junaid 
-16,TEMD6200FX01,"Photodiode, AEC-Q100, 60 °, 100 pA, 540 nm, 0805-2",Junaid 
-17,150044M155260,"LED, Red, Green, Blue, SMD, 140 °, Square, R 5mA, G 5mA, B 5mA",Junaid 
-18,XL-1615RGBC-YG,"XL-1615RGBC-YG-XINGLIGHT-SMD-4P,1.6×1.5mm RGB LEDs ROHS",Junaid 
+16,TEMD6200FX01,Photodiode  AEC-Q100  60 °  100 pA  540 nm  0805-2,Junaid 
+17,150044M155260,LED  Red  Green  Blue  SMD  140 °  Square  R 5mA  G 5mA  B 5mA,Junaid 
+18,XL-1615RGBC-YG,XL-1615RGBC-YG-XINGLIGHT-SMD-4P 1.6×1.5mm RGB LEDs ROHS,Junaid 
 19,,,Junaid 
 20,,,Junaid 
 21,,,
