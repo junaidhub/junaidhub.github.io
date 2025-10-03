@@ -17,12 +17,60 @@ Sr No,Component Name,Description,Ref By
 16,TEMD6200FX01,Photodiode  AEC-Q100  60 °  100 pA  540 nm  0805-2,Junaid 
 17,150044M155260,LED  Red  Green  Blue  SMD  140 °  Square  R 5mA  G 5mA  B 5mA,Junaid 
 18,XL-1615RGBC-YG,XL-1615RGBC-YG-XINGLIGHT-SMD-4P 1.6×1.5mm RGB LEDs ROHS,Junaid 
-19,MCP3201T-CI/SN,MICROCHIP-Analogue to Digital Converter  12 bit  100 kSPS  Pseudo Differential  Single Ended  SPI  Single,Junaid 
+19,MCP3201T-CI/SN,MICROCHIP-Analogue to Digital Converter  12 bit  100 KSPS  Pseudo Differential  Single Ended  SPI  Single,Junaid 
 20,IRLR7843TRPBF,N Channel MOSFET (Metal Oxide)  DPAK  SC 63  TO 252 3,Junaid 
 21,520-80-20-5PXDU,Crystals 8MHz -55 to +125C,Junaid 
 22,SPC20480,SPC20480-Jumper  Shunt  2Mm  2Way,Junaid 
 23,SMD LED 1206,1206 Surface Mount LED White,Junaid 
-24,,,
-25,,,
-26,,,
-27,,,
+24,Resistor 1M,0603 Surface Mount Chip Resistor,Junaid 
+25,Resistor 100K,0603 Surface Mount Chip Resistor,Junaid 
+26,Resistor 330K,0603 Surface Mount Chip Resistor,Junaid 
+27,Resistor 27K,0603 Surface Mount Chip Resistor,Junaid 
+28,Resistor 51R,0603 Surface Mount Chip Resistor,Junaid 
+29,Resistor 10K,0603 Surface Mount Chip Resistor,Junaid 
+30,Resistor 180K,0603 Surface Mount Chip Resistor,Junaid 
+31,Resistor 1K,0603 Surface Mount Chip Resistor,Junaid 
+32,Resistor 82K,0603 Surface Mount Chip Resistor,Junaid 
+33,Resistor 140R,0603 Surface Mount Chip Resistor,Junaid 
+34,Resistor 0R,0603 Surface Mount Chip Resistor,Junaid 
+35,Resistor 182K,0603 Surface Mount Chip Resistor,Junaid 
+36,Resistor 2.2K,0603 Surface Mount Chip Resistor,Junaid 
+37,Resistor 100R,0603 Surface Mount Chip Resistor,Junaid 
+38,Resistor 4.2K,0603 Surface Mount Chip Resistor,Junaid 
+39,Resistor 10M,0603 Surface Mount Chip Resistor,Junaid 
+40,Resistor 390K,0603 Surface Mount Chip Resistor,Junaid 
+41,Resistor 10R,0603 Surface Mount Chip Resistor,Junaid 
+42,Resistor 30R,1206 Surface Mount Chip Resistor,Junaid 
+43,Resistor 1.2K,1206 Surface Mount Chip Resistor,Junaid 
+44,Resistor 470K,1206 Surface Mount Chip Resistor,Junaid 
+45,Resistor 2.2M,1206 Surface Mount Chip Resistor,Junaid 
+46,Resistor 10K,1206 Surface Mount Chip Resistor,Junaid 
+47,Resistor 1M,1206 Surface Mount Chip Resistor,Junaid 
+48,Resistor 0R,1206 Surface Mount Chip Resistor,Junaid 
+49,Capacitor 100nF,0603 Surface Mount Chip Capacitor,Junaid 
+50,Capacitor 10uF,0603 Surface Mount Chip Capacitor,Junaid 
+51,Capacitor 1nF,0603 Surface Mount Chip Capacitor,Junaid 
+52,Capacitor 1.5nF,0603 Surface Mount Chip Capacitor,Junaid 
+53,Capacitor 2.2nF,0805 Surface Mount Chip Capacitor,Junaid 
+54,Capacitor 0.1uF,0805 Surface Mount Chip Capacitor,Junaid 
+55,Capacitor 1nF,0603 Surface Mount Chip Capacitor,Junaid 
+56,Capacitor 0.1uF,0603 Surface Mount Chip Capacitor,Junaid 
+57,Capacitor 1nF,0805 Surface Mount Chip Capacitor,Junaid 
+58,Capacitor 220pF,0805 Surface Mount Chip Capacitor,Junaid 
+59,Capacitor 0.33uF,0603 Surface Mount Chip Capacitor,Junaid 
+60,Capacitor 470nF,0805 Surface Mount Chip Capacitor,Junaid 
+61,LED RED,0603 Surface Mount Chip LED,Junaid 
+62,LED BLUE,0603 Surface Mount Chip LED,Junaid 
+63,Resistor 100K,1206 Surface Mount Chip Resistor,Junaid 
+64,LED WHITE,1206 Surface Mount Chip LED,Junaid 
+65,Mosfet 3N80,80N03 30V 80A n-channel power transistor mosfet,Junaid 
+66,SMD Diode 1N4007,DO-214AC(SMA) ,Junaid 
+67,IR LED,Infrared (IR) Emitter 5MM ThroughHole,Junaid 
+68,IR Photodiode,Infrared (IR) Photodiode 3MM ThroughHole,
+69,NPN and PNP Transistors,SOT23,
+70,TO-92 TL431,TO-92 TL431 VREF-36 Power Supply Control IC,
+71,,,
+72,,,
+73,,,
+74,,,
+75,,,
