@@ -1,18 +1,47 @@
 [
   {
+    "folder": "C and C++ Guide",
+    "files": [
+      {
+        "name": "C++ functions are self-contained bl.txt",
+        "type": "txt",
+        "url": "data/C and C++ Guide/C++ functions are self-contained bl.txt",
+        "updated": "2025-10-10T11:37:16.877609"
+      },
+      {
+        "name": "Functions in C are self-contained b.txt",
+        "type": "txt",
+        "url": "data/C and C++ Guide/Functions in C are self-contained b.txt",
+        "updated": "2025-10-10T11:36:48.860923"
+      },
+      {
+        "name": "You can create object-oriented prog.txt",
+        "type": "txt",
+        "url": "data/C and C++ Guide/You can create object-oriented prog.txt",
+        "updated": "2025-10-10T11:35:16.208711"
+      },
+      {
+        "name": "To create and use a header file in.txt",
+        "type": "txt",
+        "url": "data/C and C++ Guide/To create and use a header file in.txt",
+        "updated": "2025-10-10T11:33:55.228084"
+      }
+    ]
+  },
+  {
     "folder": "Components list",
     "files": [
       {
         "name": "Live Components List.csv",
         "type": "csv",
         "url": "data/Components list/Live Components List.csv",
-        "updated": "2025-07-09T01:55:00.320417"
+        "updated": "2025-10-03T12:13:06.374039"
       },
       {
         "name": "Idris Sheet.csv",
         "type": "csv",
         "url": "data/Components list/Idris Sheet.csv",
-        "updated": "2025-07-04T18:51:37.058759"
+        "updated": "2025-09-03T22:54:18.095104"
       },
       {
         "name": "Nivit Sheet.csv",
