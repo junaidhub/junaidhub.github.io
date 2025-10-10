@@ -1,0 +1,69 @@
+Functions in C are self-contained blocks of code designed to perform a specific task. They promote modularity, reusability, and easier debugging in programs.
+1. Function Declaration (Prototype):
+A function must be declared before it is used. This declaration, also known as a prototype, informs the compiler about the function's name, return type, and the types and order of its parameters.
+C
+
+return_type function_name(parameter_type1 parameter_name1, parameter_type2 parameter_name2, ...);
+Example:
+C
+
+int add(int a, int b); // Declares a function named 'add' that takes two integers and returns an integer.
+void greet();          // Declares a function named 'greet' that takes no parameters and returns nothing (void).
+2. Function Definition:
+The function definition provides the actual implementation of the function, containing the statements that are executed when the function is called.
+C
+
+return_type function_name(parameter_type1 parameter_name1, parameter_type2 parameter_name2, ...) {
+    // Function body: statements to be executed
+    // Optional: return statement to send a value back
+}
+Example:
+C
+
+int add(int a, int b) {
+    return a + b; // Returns the sum of a and b
+}
+
+void greet() {
+    printf("Hello from the greet function!\n");
+}
+3. Function Call:
+To execute a function, it must be called from another part of the program, typically from main() or another function. When calling, actual values (arguments) are passed corresponding to the parameters defined in the function.
+C
+
+function_name(argument1, argument2, ...);
+Example:
+C
+
+#include <stdio.h>
+
+// Function Declaration
+int add(int a, int b);
+void greet();
+
+int main() {
+    // Function Calls
+    int sum = add(5, 3); // Calls 'add' with arguments 5 and 3
+    printf("Sum: %d\n", sum);
+
+    greet(); // Calls 'greet'
+
+    return 0;
+}
+
+// Function Definitions
+int add(int a, int b) {
+    return a + b;
+}
+
+void greet() {
+    printf("Hello from the greet function!\n");
+}
+Types of Functions:
+Library Functions: Predefined functions available in C's standard library (e.g., printf(), scanf(), sqrt()).
+User-Defined Functions: Functions created by the programmer to perform specific tasks within their program.
+Key Concepts:
+Return Type: The type of value a function sends back to the caller (e.g., int, float, void).
+Parameters: Variables declared in the function definition that receive values from the arguments passed during a function call.
+Arguments: The actual values passed to a function when it is called.
+void: Used as a return type when a function does not return any value, or as a parameter list when a function takes no arguments.

@@ -1,0 +1,88 @@
+You can create object-oriented programming (OOP) classes in PlatformIO by adding separate header (.h) and source (.cpp) files to your project's include and src directories. PlatformIO's modern build system automatically compiles and links these files, giving you better project organization than the single-file approach used in the classic Arduino IDE. 
+Step 1: Create a PlatformIO project
+If you haven't already, start by creating a new project. You can do this from the PlatformIO Home screen in VS Code or from the command line. 
+Step 2: Create your class files
+Assume you want to create a Motor class to control a motor.
+Create the header file (Motor.h): This file defines the class and its members.
+Navigate to the include folder in your project.
+Create a new file named Motor.h.
+Add your class definition with member variables and function prototypes. Using include guards (#ifndef, #define, #endif) is a best practice to prevent multiple inclusions.
+cpp
+#ifndef MOTOR_H
+#define MOTOR_H
+
+#include <Arduino.h> // Include this if your class uses Arduino-specific functions
+
+class Motor {
+public:
+    // Constructor
+    Motor(int pin);
+
+    // Methods
+    void setSpeed(int speed);
+    void stop();
+
+private:
+    int _pin;
+    int _currentSpeed;
+};
+
+#endif
+Create the source file (Motor.cpp): This file contains the implementation of your class's methods.
+Navigate to the src folder.
+Create a new file named Motor.cpp.
+Implement the methods you declared in the header file.
+cpp
+#include "Motor.h"
+#include <Arduino.h>
+
+// Constructor implementation
+Motor::Motor(int pin) {
+    _pin = pin;
+    pinMode(_pin, OUTPUT);
+    _currentSpeed = 0;
+}
+
+// setSpeed method implementation
+void Motor::setSpeed(int speed) {
+    if (speed >= 0 && speed <= 255) {
+        _currentSpeed = speed;
+        analogWrite(_pin, _currentSpeed);
+    }
+}
+
+// stop method implementation
+void Motor::stop() {
+    _currentSpeed = 0;
+    analogWrite(_pin, 0);
+}
+ 
+Step 3: Include and use your class
+Now you can use your custom Motor class in your main program, which is typically located in src/main.cpp.
+Include the header file: Use #include "Motor.h" to make your new class available.
+Create and use objects: Instantiate your class and call its methods in your setup() and loop() functions.
+cpp
+#include <Arduino.h>
+#include "Motor.h" // Include your new class header file
+
+// Create an object of the Motor class
+Motor myMotor(3); // Assuming the motor is on pin 3
+
+void setup() {
+    // No need to set pinMode for pin 3 here, the constructor does it
+}
+
+void loop() {
+    // Set the motor speed
+    myMotor.setSpeed(150);
+    delay(2000); // Wait for 2 seconds
+
+    // Stop the motor
+    myMotor.stop();
+    delay(2000);
+}
+ 
+Step 4: Build and upload
+The PlatformIO build system will automatically find, compile, and link your Motor.cpp and main.cpp files together.
+Click the PlatformIO Build button (a checkmark icon) in the VS Code status bar.
+Click the Upload button (a right-arrow icon) to send the code to your board. 

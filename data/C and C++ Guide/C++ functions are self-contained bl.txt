@@ -1,0 +1,70 @@
+C++ functions are self-contained blocks of code designed to perform a specific task. They enhance code organization, reusability, and readability.
+Function Definition:
+A function definition consists of:
+Return Type: The data type of the value the function returns (e.g., int, double, void if nothing is returned).
+Function Name: A unique identifier for the function.
+Parameter List: A comma-separated list of input variables (with their data types) the function accepts. If no parameters, use empty parentheses ().
+Function Body: The code enclosed in curly braces {} that executes when the function is called.
+Example of a simple function:
+C++
+
+#include <iostream>
+
+// Function definition
+void greetUser(std::string name) {
+    std::cout << "Hello, " << name << "!" << std::endl;
+}
+
+int main() {
+    // Calling the function
+    greetUser("Alice"); 
+    greetUser("Bob");
+    return 0;
+}
+In this example:
+greetUser is a function with a void return type (it doesn't return a value).
+It takes one parameter: name of type std::string.
+The function body prints a greeting message using the provided name.
+In main(), greetUser is called twice with different arguments.
+Functions with Return Values:
+C++
+
+#include <iostream>
+
+// Function definition with a return value
+int addNumbers(int a, int b) {
+    int sum = a + b;
+    return sum; // Returns the calculated sum
+}
+
+int main() {
+    int result = addNumbers(5, 3); // Calls the function and stores the returned value
+    std::cout << "The sum is: " << result << std::endl; // Output: The sum is: 8
+    return 0;
+}
+Here, addNumbers returns an int value, which is then stored in the result variable in main().
+Function Prototype (Declaration):
+If a function is defined after it's called (e.g., after main()), you need to declare its prototype before main(). This tells the compiler about the function's existence and signature.
+C++
+
+#include <iostream>
+
+// Function prototype
+int multiply(int x, int y); 
+
+int main() {
+    int product = multiply(4, 6);
+    std::cout << "The product is: " << product << std::endl; // Output: The product is: 24
+    return 0;
+}
+
+// Function definition (after main)
+int multiply(int x, int y) {
+    return x * y;
+}
+Key Concepts:
+Parameters vs. Arguments: Parameters are the variables listed in the function definition, while arguments are the actual values passed during a function call.
+Local Variables: Variables declared inside a function are local to that function and cannot be accessed outside it.
+Scope: The region of a program where a variable or function is accessible.
+Function Overloading: Defining multiple functions with the same name but different parameter lists.
+Recursion: A function calling itself.
