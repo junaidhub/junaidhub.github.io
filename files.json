@@ -35,7 +35,7 @@
         "name": "Live Components List.csv",
         "type": "csv",
         "url": "data/Components list/Live Components List.csv",
-        "updated": "2025-10-03T12:13:06.374039"
+        "updated": "2025-11-15T12:41:02.447177"
       },
       {
         "name": "Idris Sheet.csv",
@@ -52,90 +52,90 @@
     ]
   },
   {
-    "folder": "Raspberrypi Guide",
+    "folder": "Resources",
     "files": [
       {
         "name": "Git & GitHub Basic to Advanced Commands.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/Git & GitHub Basic to Advanced Commands.txt",
+        "url": "data/Resources/Git & GitHub Basic to Advanced Commands.txt",
         "updated": "2025-07-14T22:59:22.699754"
       },
       {
         "name": "GUI + GPIO Hardware Integration (PyQt5).txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/GUI + GPIO Hardware Integration (PyQt5).txt",
+        "url": "data/Resources/GUI + GPIO Hardware Integration (PyQt5).txt",
         "updated": "2025-07-04T22:38:13.981154"
       },
       {
         "name": "SPI ADC MCP3008 & MCP3201.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/SPI ADC MCP3008 & MCP3201.txt",
+        "url": "data/Resources/SPI ADC MCP3008 & MCP3201.txt",
         "updated": "2025-07-04T22:37:51.142568"
       },
       {
         "name": "UART (Serial) Interfacing.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/UART (Serial) Interfacing.txt",
+        "url": "data/Resources/UART (Serial) Interfacing.txt",
         "updated": "2025-07-04T22:36:54.306711"
       },
       {
         "name": "spi_interfacing.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/spi_interfacing.txt",
+        "url": "data/Resources/spi_interfacing.txt",
         "updated": "2025-07-04T22:35:24.135068"
       },
       {
         "name": "i2c_interfacing.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/i2c_interfacing.txt",
+        "url": "data/Resources/i2c_interfacing.txt",
         "updated": "2025-07-04T22:35:07.982635"
       },
       {
         "name": "docker_on_rpi.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/docker_on_rpi.txt",
+        "url": "data/Resources/docker_on_rpi.txt",
         "updated": "2025-07-04T22:33:44.145822"
       },
       {
         "name": "usb_mounting.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/usb_mounting.txt",
+        "url": "data/Resources/usb_mounting.txt",
         "updated": "2025-07-04T22:33:18.439627"
       },
       {
         "name": "networking_wifi_staticip.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/networking_wifi_staticip.txt",
+        "url": "data/Resources/networking_wifi_staticip.txt",
         "updated": "2025-07-04T22:33:00.412999"
       },
       {
         "name": "picamera2_guide.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/picamera2_guide.txt",
+        "url": "data/Resources/picamera2_guide.txt",
         "updated": "2025-07-04T22:32:39.370794"
       },
       {
         "name": "cron_jobs.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/cron_jobs.txt",
+        "url": "data/Resources/cron_jobs.txt",
         "updated": "2025-07-04T22:32:22.940966"
       },
       {
         "name": "Using rc.local to Run Scripts on Boot.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/Using rc.local to Run Scripts on Boot.txt",
+        "url": "data/Resources/Using rc.local to Run Scripts on Boot.txt",
         "updated": "2025-07-04T22:30:52.413881"
       },
       {
         "name": "Using systemd to Run Scripts on Boot.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/Using systemd to Run Scripts on Boot.txt",
+        "url": "data/Resources/Using systemd to Run Scripts on Boot.txt",
         "updated": "2025-07-04T22:28:26.974979"
       },
       {
         "name": "GPIO Input, Output, PWM with Pull-Up Down.txt",
         "type": "txt",
-        "url": "data/Raspberrypi Guide/GPIO Input, Output, PWM with Pull-Up Down.txt",
+        "url": "data/Resources/GPIO Input, Output, PWM with Pull-Up Down.txt",
         "updated": "2025-07-04T22:27:34.061927"
       }
     ]
