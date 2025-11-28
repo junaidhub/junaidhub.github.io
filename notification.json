@@ -1,16 +1,11 @@
 [  {
     "title": "Mohammad Kaunain PCB",
-    "message": "Status:Moved to Production,Order Date:24/11/2025,Estimated Shipment Date:12/12/2025",
+    "message": "Status:Initial stage (0-40%),Order Date:24/11/2025,Estimated Shipment Date:12/12/2025",
     "date": "25-11-2025"
-  },
-  {
-    "title": "Dhwani Kaushal FNIRS PCB",
-    "message": "Status:Invoiced,Order Date:11/11/2025,Estimated Shipment Date:01/12/2025",
-    "date": "17-11-2025"
   },
     {
     "title": "Devender Maurya H_Bridge_04 PCB",
-    "message": "Status:Initial stage (0-40%),Order Date:18/11/2025,Estimated Shipment Date:NULL",
+    "message": "Status:Received,Order Date:18/11/2025,Estimated Shipment Date:NULL",
     "date": "18-11-2025"
   },
     {
