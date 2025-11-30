@@ -1,0 +1,152 @@
+Here is a complete, clean, organized list of all important WSL (Windows Subsystem for Linux) commands you need to install, manage, control, update, remove distros, network reset, export/import, and more.
+
+I am giving you every commonly used WSL command in a well-structured way.
+(Works on Windows 10 & Windows 11)
+
+✅ 1. Install & Basic Setup
+Install WSL (auto installs Ubuntu)
+wsl --install
+
+Install WSL + choose distro
+wsl --install -d <DistroName>
+
+
+Example:
+
+wsl --install -d Debian
+
+List available distros to install
+wsl --list --online
+
+✅ 2. List & Check Installed Distros
+Show installed Linux distros
+wsl --list
+
+
+or
+
+wsl -l
+
+List with running status
+wsl -l -v
+
+✅ 3. Set Default Distro
+Set default distro
+wsl --set-default <DistroName>
+
+
+Example:
+
+wsl --set-default Ubuntu
+
+✅ 4. Start, Stop & Restart WSL
+Start WSL (default distro)
+wsl
+
+Run a command inside WSL without opening shell
+wsl <command>
+
+
+Example:
+
+wsl ls -l
+
+Shutdown all WSL instances + VM
+wsl --shutdown
+
+✅ 5. Version Control (WSL1 / WSL2)
+Set distro to WSL2
+wsl --set-version <DistroName> 2
+
+Set distro to WSL1
+wsl --set-version <DistroName> 1
+
+Check version for all distros
+wsl -l -v
+
+Set WSL2 as default for new installs
+wsl --set-default-version 2
+
+✅ 6. Export, Import & Backup
+Export a distro to .tar (backup)
+wsl --export <DistroName> <FileName.tar>
+
+
+Example:
+
+wsl --export Ubuntu ubuntu_backup.tar
+
+Import a distro from .tar
+wsl --import <NewName> <InstallFolder> <FileName.tar>
+
+
+Example:
+
+wsl --import UbuntuRestored C:\WSL\Ubuntu ubuntu_backup.tar
+
+✅ 7. Remove / Unregister Distros
+Delete a Linux distro completely
+wsl --unregister <DistroName>
+
+✅ 8. Update WSL
+Update WSL application
+wsl --update
+
+Rollback last update
+wsl --update --rollback
+
+✅ 9. WSL Network Commands
+Reset WSL network
+wsl --shutdown
+netsh winsock reset
+
+Find WSL IP
+
+Inside WSL:
+
+ip addr
+
+
+Windows command:
+
+wsl hostname -I
+
+✅ 10. WSL GUI-related
+Enable GUI apps (WSLg on Win11)
+
+Already enabled by default, but update helps:
+
+wsl --update
+
+✅ 11. Manage WSL Settings File
+Open WSL config file
+notepad %USERPROFILE%\.wslconfig
+
+
+Example .wslconfig content:
+
+[wsl2]
+memory=4GB
+processors=4
+swap=2GB
+
+
+Reload config:
+
+wsl --shutdown
+
+✅ 12. Advanced
+Run as root
+wsl -u root
+
+Open specific distro
+wsl -d <DistroName>
+
+Run command as root inside a distro
+wsl -d <DistroName> -u root <command>
+
+⭐ BONUS: Common Fix Commands
+Fix WSL not starting
+wsl --shutdown
+DISM /Online /Cleanup-Image /RestoreHealth
+sfc /scannow
