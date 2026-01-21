@@ -74,11 +74,11 @@ Sr No,Component Name,Description,Ref By
 73,Mosfet Module 5x,,
 74,40x2 Connector ,,
 75,Copper Clade,,
-76,,,
-77,,,
-78,,,
-79,,,
-80,,,
+76,Capacitor 4.7uf,16V 4.7uF X5R±10% 0603 Multilayer Ceramic Capacitors MLCC – SMD,Unknown
+77,Capacitor 6.8pf,6.8pF (0.0068nF) 50V Capacitor – 0603 SMD,Unknown
+78,Capacitor 1uf,25V 1uF X7R±10% 0603 Multilayer Ceramic Capacitors MLCC – SMD,Unknown
+79,Capacitor 100nF,100V 100nF X7R±10% 0603 Multilayer Ceramic Capacitors MLCC – SMD,Unknown
+80,Capacitor 10uf,16V 10uF X5R±10% 0603 Multilayer Ceramic Capacitors MLCC – SMD,Unknown
 81,,,
 82,,,
 83,,,
