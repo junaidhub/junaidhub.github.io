@@ -1,169 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Junaid Sahibole - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .profile-img { transition: transform 0.3s ease; }
-        .profile-img:hover { transform: scale(1.05); }
-        .skill-bar { transition: width 1.5s ease; }
-        .nav-link { position: relative; }
-        .nav-link::after {
-            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
-            background-color: #3b82f6; transition: width 0.3s ease;
-        }
-        .nav-link:hover::after { width: 100%; }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in { animation: fadeIn 1s ease forwards; }
-    </style>
+  <meta charset="UTF-8" />
+  <title>About — Junaid Sahibole</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="assets/style.css" />
+  <style>
+    .about-wrap { max-width: 980px; margin: 0 auto; padding: 24px 18px; }
+    .about-hero {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: #fff;
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 22px;
+    }
+    .about-hero h1 { margin: 0 0 6px; font-size: 32px; letter-spacing: -0.02em; }
+    .about-hero h2 { margin: 0 0 16px; font-size: 18px; font-weight: 500; opacity: .95; }
+    .about-hero p  { margin: 0 0 18px; opacity: .9; max-width: 640px; }
+    .about-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .pill-btn {
+      padding: 9px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform .15s, opacity .15s;
+    }
+    .pill-btn.primary { background: #fff; color: var(--primary); }
+    .pill-btn.ghost { border: 1px solid rgba(255,255,255,.7); color: #fff; }
+    .pill-btn:hover { transform: translateY(-1px); }
+
+    .about-card {
+      background: var(--bg-elev);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .about-card h3 {
+      margin: 0 0 12px;
+      font-size: 16px;
+      color: var(--text);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .about-card h3 i { color: var(--primary); }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+    .info-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .info-item i {
+      color: var(--primary);
+      font-size: 16px;
+      margin-top: 2px;
+    }
+    .info-item b { display: block; font-size: 12px; color: var(--text-muted); font-weight: 500; }
+    .info-item span { font-size: 14px; color: var(--text); }
+
+    .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+    .skill-group h4 { margin: 0 0 8px; font-size: 14px; color: var(--text); }
+    .skill-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+    .chip {
+      background: var(--primary-soft);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+    .project { padding: 12px 14px; border-left: 3px solid var(--primary); background: var(--bg-muted); border-radius: 6px; margin-bottom: 10px; }
+    .project h4 { margin: 0 0 4px; font-size: 15px; color: var(--text); }
+    .project p { margin: 0; font-size: 13px; color: var(--text-muted); }
+  </style>
 </head>
-<body class="bg-gray-50 font-sans">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-md sticky top-0 z-10">
-        <div class="container mx-auto px-6 py-3">
-            <div class="flex justify-between items-center">
-                <a href="#" class="text-2xl font-bold text-blue-500">About Me</a>
-                <div class="hidden md:flex space-x-8">
-                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-500">About</a>
-                    <a href="#skills" class="nav-link text-gray-700 hover:text-blue-500">Skills</a>
-                    <a href="#experience" class="nav-link text-gray-700 hover:text-blue-500">Experience</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-500">Contact</a>
-                </div>
-                <button class="md:hidden focus:outline-none" id="menu-btn">
-                    <i class="fas fa-bars text-gray-700 text-xl"></i>
-                </button>
-            </div>
-            <div class="md:hidden hidden mt-4" id="mobile-menu">
-                <a href="#about" class="block py-2 text-gray-700 hover:text-blue-500">About</a>
-                <a href="#skills" class="block py-2 text-gray-700 hover:text-blue-500">Skills</a>
-                <a href="#experience" class="block py-2 text-gray-700 hover:text-blue-500">Experience</a>
-                <a href="#contact" class="block py-2 text-gray-700 hover:text-blue-500">Contact</a>
-            </div>
-        </div>
-    </nav>
+<body>
+  <!-- Top bar (lite version) -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="brand">
+        <span class="brand-icon"><i class="fas fa-folder-open"></i></span>
+        <span class="brand-text">JunaidHub</span>
+      </a>
+      <div class="topbar-actions" style="margin-left:auto;">
+        <button id="themeToggle" class="icon-btn" aria-label="Toggle theme" title="Toggle dark mode">
+          <i class="fas fa-moon"></i>
+        </button>
+        <a href="index.html" class="btn-link"><i class="fas fa-arrow-left"></i><span class="hide-sm">Back</span></a>
+      </div>
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="py-20 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-        <div class="container mx-auto px-6 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-10 md:mb-0 fade-in">
-                <h1 class="text-4xl md:text-6xl font-bold mb-4">Hi, I'm <span class="text-yellow-300">Junaid Sahibole</span></h1>
-                <h2 class="text-2xl md:text-3xl mb-6">Embedded Systems & Electronics Engineer</h2>
-                <p class="text-lg mb-8">I build real-world electronics & IoT systems from idea to implementation.</p>
-                <div class="flex space-x-4">
-                    <a href="#contact" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition duration-300">Contact</a>
-                    <a href="Junaid Resume (2).pdf" class="border-2 border-white px-6 py-3 rounded-full font-semibold hover:bg-white hover:text-blue-600 transition duration-300">Download CV</a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center fade-in">
-                <!-- No image shown -->
-            </div>
-        </div>
+  <main class="about-wrap">
+    <!-- Hero -->
+    <section class="about-hero">
+      <h1>Hi, I'm <span style="color:#fde68a">Junaid Sahibole</span></h1>
+      <h2>Embedded Systems & Electronics Engineer</h2>
+      <p>I build real-world electronics and IoT systems end-to-end — circuit design, firmware, hardware integration, and prototyping.</p>
+      <div class="about-actions">
+        <a href="#contact" class="pill-btn primary"><i class="fas fa-envelope"></i> Contact</a>
+        <a href="Junaid Resume (2).pdf" class="pill-btn ghost"><i class="fas fa-download"></i> Download CV</a>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">About <span class="text-blue-500">Me</span></h2>
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/3 mb-10 md:mb-0 flex justify-center">
-                    <!-- No image shown -->
-                </div>
-                <div class="md:w-2/3 md:pl-12">
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Who am I?</h3>
-                    <p class="text-gray-600 mb-6 leading-relaxed">
-                        I’m an experienced Electronics Engineer specializing in embedded systems, hardware development, and product prototyping. I’ve built solutions across domains such as smart recycling (Coca-Cola), medical devices (Prosthetic Arm), real-time monitoring systems, and industrial control. I'm passionate about circuit design, firmware development, and integrating IoT with real-world applications.
-                    </p>
-                    <div class="grid grid-cols-2 gap-4 mt-8">
-                        <div class="flex items-center">
-                            <i class="fas fa-user-tie text-blue-500 mr-3 text-xl"></i>
-                            <div><p class="font-semibold">Name:</p><p class="text-gray-600">Junaid Sahibole</p></div>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-envelope text-blue-500 mr-3 text-xl"></i>
-                            <div><p class="font-semibold">Email:</p><p class="text-gray-600">junaidsahibole22@gmail.com</p></div>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-phone text-blue-500 mr-3 text-xl"></i>
-                            <div><p class="font-semibold">Phone:</p><p class="text-gray-600">+91 8779040967</p></div>
-                        </div>
-                        <div class="flex items-center">
-                            <i class="fas fa-map-marker-alt text-blue-500 mr-3 text-xl"></i>
-                            <div><p class="font-semibold">Location:</p><p class="text-gray-600">Mumbai, India</p></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- About -->
+    <section class="about-card">
+      <h3><i class="fas fa-user"></i> About</h3>
+      <p style="color:var(--text-muted); margin-top:0">
+        Experienced Electronics Engineer specializing in embedded systems, hardware development, and product prototyping.
+        I've built solutions across smart recycling (Coca-Cola), medical devices (prosthetic arm), real-time monitoring
+        systems and industrial control. Passionate about circuit design, firmware development, and integrating IoT into the real world.
+      </p>
+      <div class="info-grid" style="margin-top:16px">
+        <div class="info-item"><i class="fas fa-user-tie"></i><div><b>Name</b><span>Junaid Sahibole</span></div></div>
+        <div class="info-item"><i class="fas fa-envelope"></i><div><b>Email</b><span>junaidsahibole22@gmail.com</span></div></div>
+        <div class="info-item"><i class="fas fa-phone"></i><div><b>Phone</b><span>+91 8779040967</span></div></div>
+        <div class="info-item"><i class="fas fa-map-marker-alt"></i><div><b>Location</b><span>Mumbai, India</span></div></div>
+      </div>
     </section>
 
-    <!-- Skills Section -->
-    <section id="skills" class="py-20 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Technical <span class="text-blue-500">Skills</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div>
-                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">Embedded Systems</h3>
-                    <ul class="list-disc pl-6 text-gray-700 space-y-2">
-                        <li>STM32XXXX, ESP8266, AVR, Raspberry Pi</li>
-                        <li>Embedded C, FreeRTOS, MicroPython</li>
-                        <li>Peripheral interfaces: SPI, I2C, UART, ADC, PWM</li>
-                        <li>Sensor integration and motor drivers</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold mb-6 text-gray-800">Hardware & Design</h3>
-                    <ul class="list-disc pl-6 text-gray-700 space-y-2">
-                        <li>Altium Designer, EasyEDA, Proteus</li>
-                        <li>PCB layout, Schematic design</li>
-                        <li>Analog & digital circuit design</li>
-                        <li>IoT system integration</li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Skills -->
+    <section class="about-card">
+      <h3><i class="fas fa-microchip"></i> Technical skills</h3>
+      <div class="skill-grid">
+        <div class="skill-group">
+          <h4>Embedded Systems</h4>
+          <div class="skill-chips">
+            <span class="chip">STM32</span><span class="chip">ESP8266 / ESP32</span><span class="chip">AVR</span>
+            <span class="chip">Raspberry Pi</span><span class="chip">Embedded C</span><span class="chip">FreeRTOS</span>
+            <span class="chip">MicroPython</span>
+          </div>
         </div>
+        <div class="skill-group">
+          <h4>Peripherals & Sensors</h4>
+          <div class="skill-chips">
+            <span class="chip">SPI</span><span class="chip">I2C</span><span class="chip">UART</span>
+            <span class="chip">ADC / PWM</span><span class="chip">GPIO</span><span class="chip">Motor drivers</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Hardware & Design</h4>
+          <div class="skill-chips">
+            <span class="chip">Altium Designer</span><span class="chip">EasyEDA</span><span class="chip">Proteus</span>
+            <span class="chip">PCB layout</span><span class="chip">Schematic design</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Software & IoT</h4>
+          <div class="skill-chips">
+            <span class="chip">Python</span><span class="chip">PyQt5</span><span class="chip">YOLOv8</span>
+            <span class="chip">IoT integration</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Experience Section -->
-    <section id="experience" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Project <span class="text-blue-500">Experience</span></h2>
-            <div class="space-y-12">
-                <div>
-                    <h3 class="text-2xl font-semibold text-blue-600">Coca-Cola Smart Bin System</h3>
-                    <p class="text-gray-700 mt-2">Developed a smart recycling system using Raspberry Pi, PyQt5 GUI, camera classification (YOLOv8), and sensor integration for bin detection and automation control.</p>
-                </div>
-                <!-- <div>
-                    <h3 class="text-2xl font-semibold text-blue-600">Ecomaxgo Industrial Controllers</h3>
-                    <p class="text-gray-700 mt-2">Designed and assembled multiple control units for monitoring sensor data and automating logic in industrial environments and Making custom PCBs.</p>
-                </div> -->
-                <div>
-                    <h3 class="text-2xl font-semibold text-blue-600">Prosthetic Arm EMG System</h3>
-                    <p class="text-gray-700 mt-2">Created an EMG-based prosthetic arm system using AD8232 for muscle signal capture, with real-time output triggering using ESP8266 and PWM.</p>
-                </div>
-                <div>
-                    <h3 class="text-2xl font-semibold text-blue-600">Digital Storage Oscilloscope (DSO)</h3>
-                    <p class="text-gray-700 mt-2">Built a custom DSO system including waveform generation and analog signal acquisition via MCP3201 and graphical representation using Python.</p>
-                </div>
-            </div>
-        </div>
+    <!-- Projects -->
+    <section class="about-card">
+      <h3><i class="fas fa-rocket"></i> Project experience</h3>
+      <div class="project">
+        <h4>Coca-Cola Smart Bin System</h4>
+        <p>Smart recycling system using Raspberry Pi, PyQt5 GUI, camera classification (YOLOv8), and sensor-driven bin detection & automation.</p>
+      </div>
+      <div class="project">
+        <h4>Prosthetic Arm EMG System</h4>
+        <p>EMG-based prosthetic arm using AD8232 for muscle signal capture, with real-time output triggered by ESP8266 PWM.</p>
+      </div>
+      <div class="project">
+        <h4>Digital Storage Oscilloscope (DSO)</h4>
+        <p>Custom DSO including waveform generation, analog acquisition via MCP3201, and graphical display in Python.</p>
+      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-100">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold text-center mb-16 text-gray-800">Contact <span class="text-blue-500">Me</span></h2>
-            <div class="text-center text-lg text-gray-700">
-                <p><i class="fas fa-envelope text-blue-500 mr-2"></i>junaidsahibole22@gmail.com</p>
-                <p><i class="fas fa-phone text-blue-500 mr-2"></i>+91 8779040967</p>
-                <p><i class="fas fa-map-marker-alt text-blue-500 mr-2"></i>Mumbai, India</p>
-            </div>
-        </div>
+    <!-- Contact -->
+    <section id="contact" class="about-card">
+      <h3><i class="fas fa-paper-plane"></i> Contact</h3>
+      <div class="info-grid">
+        <div class="info-item"><i class="fas fa-envelope"></i><div><b>Email</b><span>junaidsahibole22@gmail.com</span></div></div>
+        <div class="info-item"><i class="fas fa-phone"></i><div><b>Phone</b><span>+91 8779040967</span></div></div>
+        <div class="info-item"><i class="fas fa-map-marker-alt"></i><div><b>Location</b><span>Mumbai, India</span></div></div>
+      </div>
     </section>
+  </main>
+
+  <footer class="footer">
+    <span>Maintained by <strong>Junaid Sahibole</strong></span>
+    <span class="footer-dot">•</span>
+    <span>Hosted on GitHub Pages</span>
+  </footer>
+
+  <script>
+    // Inline theme toggle (mirrors main app logic)
+    (function () {
+      const saved = localStorage.getItem('jh-theme') || 'light';
+      const apply = (t) => {
+        document.body.classList.toggle('dark', t === 'dark');
+        const icon = document.querySelector('#themeToggle i');
+        if (icon) icon.className = `fas ${t === 'dark' ? 'fa-sun' : 'fa-moon'}`;
+      };
+      apply(saved);
+      document.getElementById('themeToggle').addEventListener('click', () => {
+        const next = document.body.classList.contains('dark') ? 'light' : 'dark';
+        localStorage.setItem('jh-theme', next);
+        apply(next);
+      });
+    })();
+  </script>
 </body>
 </html>

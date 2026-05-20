@@ -1,0 +1,17 @@
+# JunaidHub — Python requirements
+#
+# generate_files_json.py uses ONLY the Python 3 standard library
+# (json, sys, datetime, pathlib). No third-party packages required.
+#
+# Minimum Python version: 3.9 (for built-in generic type hints like list[dict])
+#
+# Install (no-op, kept for tooling that expects this file):
+#     pip install -r requirements.txt
+#
+# If you later extend the generator (e.g. image dimensions, markdown render,
+# git history), uncomment and pin the relevant packages below:
+#
+# Pillow>=10.0        # image dimensions / thumbnails
+# markdown>=3.5       # render .md files server-side
+# GitPython>=3.1      # use git log for last-updated instead of mtime
+# watchdog>=3.0       # auto-regenerate files.json on file changes
