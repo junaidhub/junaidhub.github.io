@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-06-03T19:08:46",
+  "generated_at": "2026-06-03T23:46:01",
   "root": "data",
-  "total_folders": 6,
-  "total_files": 26,
+  "total_folders": 5,
+  "total_files": 25,
   "total_size": 11794896,
   "total_size_human": "11.2 MB",
   "folders": [
@@ -16,7 +16,7 @@
         {
           "name": "C++ functions are self-contained bl.txt",
           "type": "txt",
-          "url": "data\/C and C++ Guide\/C++ functions are self-contained bl.txt",
+          "url": "data/C and C++ Guide/C++ functions are self-contained bl.txt",
           "size": 2760,
           "size_human": "2.7 KB",
           "updated": "2026-06-03T17:04:25"
@@ -24,7 +24,7 @@
         {
           "name": "Functions in C are self-contained b.txt",
           "type": "txt",
-          "url": "data\/C and C++ Guide\/Functions in C are self-contained b.txt",
+          "url": "data/C and C++ Guide/Functions in C are self-contained b.txt",
           "size": 2687,
           "size_human": "2.6 KB",
           "updated": "2026-06-03T17:04:25"
@@ -32,7 +32,7 @@
         {
           "name": "To create and use a header file in.txt",
           "type": "txt",
-          "url": "data\/C and C++ Guide\/To create and use a header file in.txt",
+          "url": "data/C and C++ Guide/To create and use a header file in.txt",
           "size": 2745,
           "size_human": "2.7 KB",
           "updated": "2026-06-03T17:04:25"
@@ -40,7 +40,7 @@
         {
           "name": "You can create object-oriented prog.txt",
           "type": "txt",
-          "url": "data\/C and C++ Guide\/You can create object-oriented prog.txt",
+          "url": "data/C and C++ Guide/You can create object-oriented prog.txt",
           "size": 3085,
           "size_human": "3.0 KB",
           "updated": "2026-06-03T17:04:25"
@@ -57,7 +57,7 @@
         {
           "name": "Idris Sheet.csv",
           "type": "csv",
-          "url": "data\/Components list\/Idris Sheet.csv",
+          "url": "data/Components list/Idris Sheet.csv",
           "size": 6775,
           "size_human": "6.6 KB",
           "updated": "2026-06-03T17:04:25"
@@ -65,7 +65,7 @@
         {
           "name": "Live Components List.csv",
           "type": "csv",
-          "url": "data\/Components list\/Live Components List.csv",
+          "url": "data/Components list/Live Components List.csv",
           "size": 6819,
           "size_human": "6.7 KB",
           "updated": "2026-06-03T17:04:25"
@@ -73,7 +73,7 @@
         {
           "name": "Nivit Sheet.csv",
           "type": "csv",
-          "url": "data\/Components list\/Nivit Sheet.csv",
+          "url": "data/Components list/Nivit Sheet.csv",
           "size": 1000,
           "size_human": "1000 B",
           "updated": "2026-06-03T17:04:25"
@@ -90,7 +90,7 @@
         {
           "name": "cron_jobs.txt",
           "type": "txt",
-          "url": "data\/Resources\/cron_jobs.txt",
+          "url": "data/Resources/cron_jobs.txt",
           "size": 744,
           "size_human": "744 B",
           "updated": "2026-06-03T17:04:25"
@@ -98,7 +98,7 @@
         {
           "name": "docker_on_rpi.txt",
           "type": "txt",
-          "url": "data\/Resources\/docker_on_rpi.txt",
+          "url": "data/Resources/docker_on_rpi.txt",
           "size": 513,
           "size_human": "513 B",
           "updated": "2026-06-03T17:04:25"
@@ -106,7 +106,7 @@
         {
           "name": "Git & GitHub Basic to Advanced Commands.txt",
           "type": "txt",
-          "url": "data\/Resources\/Git & GitHub Basic to Advanced Commands.txt",
+          "url": "data/Resources/Git & GitHub Basic to Advanced Commands.txt",
           "size": 4542,
           "size_human": "4.4 KB",
           "updated": "2026-06-03T17:04:25"
@@ -114,7 +114,7 @@
         {
           "name": "GPIO Input, Output, PWM with Pull-Up Down.txt",
           "type": "txt",
-          "url": "data\/Resources\/GPIO Input, Output, PWM with Pull-Up Down.txt",
+          "url": "data/Resources/GPIO Input, Output, PWM with Pull-Up Down.txt",
           "size": 864,
           "size_human": "864 B",
           "updated": "2026-06-03T17:04:25"
@@ -122,7 +122,7 @@
         {
           "name": "GUI + GPIO Hardware Integration (PyQt5).txt",
           "type": "txt",
-          "url": "data\/Resources\/GUI + GPIO Hardware Integration (PyQt5).txt",
+          "url": "data/Resources/GUI + GPIO Hardware Integration (PyQt5).txt",
           "size": 873,
           "size_human": "873 B",
           "updated": "2026-06-03T17:04:25"
@@ -130,7 +130,7 @@
         {
           "name": "i2c_interfacing.txt",
           "type": "txt",
-          "url": "data\/Resources\/i2c_interfacing.txt",
+          "url": "data/Resources/i2c_interfacing.txt",
           "size": 531,
           "size_human": "531 B",
           "updated": "2026-06-03T17:04:25"
@@ -138,7 +138,7 @@
         {
           "name": "networking_wifi_staticip.txt",
           "type": "txt",
-          "url": "data\/Resources\/networking_wifi_staticip.txt",
+          "url": "data/Resources/networking_wifi_staticip.txt",
           "size": 411,
           "size_human": "411 B",
           "updated": "2026-06-03T17:04:25"
@@ -146,7 +146,7 @@
         {
           "name": "picamera2_guide.txt",
           "type": "txt",
-          "url": "data\/Resources\/picamera2_guide.txt",
+          "url": "data/Resources/picamera2_guide.txt",
           "size": 452,
           "size_human": "452 B",
           "updated": "2026-06-03T17:04:25"
@@ -154,7 +154,7 @@
         {
           "name": "SPI ADC MCP3008 & MCP3201.txt",
           "type": "txt",
-          "url": "data\/Resources\/SPI ADC MCP3008 & MCP3201.txt",
+          "url": "data/Resources/SPI ADC MCP3008 & MCP3201.txt",
           "size": 689,
           "size_human": "689 B",
           "updated": "2026-06-03T17:04:25"
@@ -162,7 +162,7 @@
         {
           "name": "spi_interfacing.txt",
           "type": "txt",
-          "url": "data\/Resources\/spi_interfacing.txt",
+          "url": "data/Resources/spi_interfacing.txt",
           "size": 508,
           "size_human": "508 B",
           "updated": "2026-06-03T17:04:25"
@@ -170,7 +170,7 @@
         {
           "name": "UART (Serial) Interfacing.txt",
           "type": "txt",
-          "url": "data\/Resources\/UART (Serial) Interfacing.txt",
+          "url": "data/Resources/UART (Serial) Interfacing.txt",
           "size": 516,
           "size_human": "516 B",
           "updated": "2026-06-03T17:04:25"
@@ -178,7 +178,7 @@
         {
           "name": "usb_mounting.txt",
           "type": "txt",
-          "url": "data\/Resources\/usb_mounting.txt",
+          "url": "data/Resources/usb_mounting.txt",
           "size": 315,
           "size_human": "315 B",
           "updated": "2026-06-03T17:04:25"
@@ -186,7 +186,7 @@
         {
           "name": "Using rc.local to Run Scripts on Boot.txt",
           "type": "txt",
-          "url": "data\/Resources\/Using rc.local to Run Scripts on Boot.txt",
+          "url": "data/Resources/Using rc.local to Run Scripts on Boot.txt",
           "size": 624,
           "size_human": "624 B",
           "updated": "2026-06-03T17:04:25"
@@ -194,7 +194,7 @@
         {
           "name": "Using systemd to Run Scripts on Boot.txt",
           "type": "txt",
-          "url": "data\/Resources\/Using systemd to Run Scripts on Boot.txt",
+          "url": "data/Resources/Using systemd to Run Scripts on Boot.txt",
           "size": 664,
           "size_human": "664 B",
           "updated": "2026-06-03T17:04:25"
@@ -211,7 +211,7 @@
         {
           "name": "IMG_20241226_171916.jpg",
           "type": "jpg",
-          "url": "data\/Sandeep Sir Components\/IMG_20241226_171916.jpg",
+          "url": "data/Sandeep Sir Components/IMG_20241226_171916.jpg",
           "size": 3662920,
           "size_human": "3.5 MB",
           "updated": "2026-06-03T17:04:25"
@@ -219,7 +219,7 @@
         {
           "name": "IMG_20241226_171919.jpg",
           "type": "jpg",
-          "url": "data\/Sandeep Sir Components\/IMG_20241226_171919.jpg",
+          "url": "data/Sandeep Sir Components/IMG_20241226_171919.jpg",
           "size": 4825535,
           "size_human": "4.6 MB",
           "updated": "2026-06-03T17:04:25"
@@ -227,26 +227,9 @@
         {
           "name": "IMG_20241226_171924.jpg",
           "type": "jpg",
-          "url": "data\/Sandeep Sir Components\/IMG_20241226_171924.jpg",
+          "url": "data/Sandeep Sir Components/IMG_20241226_171924.jpg",
           "size": 3265687,
           "size_human": "3.1 MB",
-          "updated": "2026-06-03T17:04:25"
-        }
-      ]
-    },
-    {
-      "folder": "Shared",
-      "file_count": 1,
-      "total_size": 0,
-      "total_size_human": "0 B",
-      "latest": "2026-06-03T17:04:25",
-      "files": [
-        {
-          "name": "redme.md.txt",
-          "type": "txt",
-          "url": "data\/Shared\/redme.md.txt",
-          "size": 0,
-          "size_human": "0 B",
           "updated": "2026-06-03T17:04:25"
         }
       ]
@@ -261,7 +244,7 @@
         {
           "name": "Commands.txt",
           "type": "txt",
-          "url": "data\/WSL Commands\/Commands.txt",
+          "url": "data/WSL Commands/Commands.txt",
           "size": 2637,
           "size_human": "2.6 KB",
           "updated": "2026-06-03T17:04:25"
