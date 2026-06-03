@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-03T23:46:01",
+  "generated_at": "2026-06-03T23:49:38",
   "root": "data",
-  "total_folders": 5,
-  "total_files": 25,
-  "total_size": 11794896,
+  "total_folders": 6,
+  "total_files": 26,
+  "total_size": 11794934,
   "total_size_human": "11.2 MB",
   "folders": [
     {
@@ -231,6 +231,23 @@
           "size": 3265687,
           "size_human": "3.1 MB",
           "updated": "2026-06-03T17:04:25"
+        }
+      ]
+    },
+    {
+      "folder": "Shared",
+      "file_count": 1,
+      "total_size": 38,
+      "total_size_human": "38 B",
+      "latest": "2026-06-03T23:49:38",
+      "files": [
+        {
+          "name": "This folder is for instant share fi.txt",
+          "type": "txt",
+          "url": "data/Shared/This folder is for instant share fi.txt",
+          "size": 38,
+          "size_human": "38 B",
+          "updated": "2026-06-03T23:49:38"
         }
       ]
     },
