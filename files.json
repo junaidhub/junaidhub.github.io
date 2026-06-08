@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-08T19:14:38",
+  "generated_at": "2026-06-08T19:17:03",
   "root": "data",
   "total_folders": 6,
-  "total_files": 27,
-  "total_size": 12056643,
-  "total_size_human": "11.5 MB",
+  "total_files": 26,
+  "total_size": 11794934,
+  "total_size_human": "11.2 MB",
   "folders": [
     {
       "folder": "C and C++ Guide",
@@ -236,19 +236,11 @@
     },
     {
       "folder": "Shared",
-      "file_count": 2,
-      "total_size": 261747,
-      "total_size_human": "255.6 KB",
-      "latest": "2026-06-08T19:14:38",
+      "file_count": 1,
+      "total_size": 38,
+      "total_size_human": "38 B",
+      "latest": "2026-06-03T23:49:38",
       "files": [
-        {
-          "name": "Screenshot_2026-06-08-14-36-40-77_7352322957d4404136654ef4adb64504.jpg",
-          "type": "jpg",
-          "url": "data\/Shared\/Screenshot_2026-06-08-14-36-40-77_7352322957d4404136654ef4adb64504.jpg",
-          "size": 261709,
-          "size_human": "255.6 KB",
-          "updated": "2026-06-08T19:14:38"
-        },
         {
           "name": "This folder is for instant share fi.txt",
           "type": "txt",
