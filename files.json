@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-08T19:22:20",
+  "generated_at": "2026-06-09T11:42:18",
   "root": "data",
   "total_folders": 6,
-  "total_files": 27,
-  "total_size": 11833718,
-  "total_size_human": "11.3 MB",
+  "total_files": 26,
+  "total_size": 11794934,
+  "total_size_human": "11.2 MB",
   "folders": [
     {
       "folder": "C and C++ Guide",
@@ -236,19 +236,11 @@
     },
     {
       "folder": "Shared",
-      "file_count": 2,
-      "total_size": 38822,
-      "total_size_human": "37.9 KB",
-      "latest": "2026-06-08T19:22:20",
+      "file_count": 1,
+      "total_size": 38,
+      "total_size_human": "38 B",
+      "latest": "2026-06-03T23:49:38",
       "files": [
-        {
-          "name": "ROBUKITS.pdf",
-          "type": "pdf",
-          "url": "data/Shared/ROBUKITS.pdf",
-          "size": 38784,
-          "size_human": "37.9 KB",
-          "updated": "2026-06-08T19:22:20"
-        },
         {
           "name": "This folder is for instant share fi.txt",
           "type": "txt",
